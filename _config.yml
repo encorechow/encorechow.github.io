@@ -5,7 +5,7 @@
 #
 title:       "Neverland"
 description: "Jay's Technical Zone"
-url:         # the base hostname & protocol for your site
+url:  # the base hostname & protocol for your site
 
 #
 ###################################
@@ -31,14 +31,14 @@ kramdown:
 ####################################
 #
 owner:
-  name: Zheng Zhou
+  name: "ZHENG ZHOU"
   avatar: avatar.jpg
   job: "Student (Master of Science)"
-  bio: "A human being who definitely goes crazy without chilli and spicy food in daily life. So, Tag me 'Spicy Programmer'"
-  email: "encorechow1992@gmail.com & zhouzh@oregonstate.edu"
+  bio: "A human being who definitely goes crazy without chilli and spicy food in daily life. Tag me 'Spicy Programmer'"
+  email: "encorechow1992@gmail.com"
   disqus-shortname:
   twitter:
-  facebook:
+  facebook: "axieandyangyang"
   google:
     plus:
     analytics:
@@ -48,7 +48,7 @@ owner:
   bing-verify:
   github: "encorechow"
   stackoverflow: #123456/username   from a "http://stackoverflow.com/users/123456/username" link
-  linkedin: #username
+  linkedin: "zhou-zheng-378041a5" #username
   xing: #username
   instagram: #username
   lastfm: #username
