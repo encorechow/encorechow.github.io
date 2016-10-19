@@ -5,13 +5,15 @@
     <description>Jay&#39;s Technical Zone</description>
     <link>/</link>
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 18 Oct 2016 22:40:06 -0700</pubDate>
-    <lastBuildDate>Tue, 18 Oct 2016 22:40:06 -0700</lastBuildDate>
+    <pubDate>Tue, 18 Oct 2016 22:43:48 -0700</pubDate>
+    <lastBuildDate>Tue, 18 Oct 2016 22:43:48 -0700</lastBuildDate>
     <generator>Jekyll v3.1.6</generator>
     
       <item>
         <title>Find kth smallest elements in two sorted array</title>
-        <description>&lt;h3 id=&quot;problem-description&quot;&gt;Problem Description&lt;/h3&gt;
+        <description>&lt;hr /&gt;
+
+&lt;h3 id=&quot;problem-description&quot;&gt;Problem Description&lt;/h3&gt;
 
 &lt;blockquote&gt;
   &lt;p&gt;Given two sorted arrays A and B of size m and n respectively. Find the k-th smallest elements in the union of A and B. You can assume that there are no duplicates. (Subproblem of LC No.4)&lt;/p&gt;

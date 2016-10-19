@@ -5,6 +5,9 @@ excerpt: "Preparing for interviews."
 categories: [Algorithms]
 tags: [code, Leetcode, two pointers, binary search]
 comments: true
+image:
+  feature: Algorithms-In-Computer-Science.jpg
+---
 ---
 
 ### Problem Description
