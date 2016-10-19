@@ -1188,7 +1188,7 @@ p {
    Syntax highlighting
    ========================================================================== */
 pre, code {
-  font-family: "Ubuntu Mono", "Courier New", monospace;
+  font-family: "Monaco", "Ubuntu Mono", "Courier New", monospace;
   color: #525252;
   font-size: 0.9em;
   background-color: #f8f8f8;
@@ -1429,7 +1429,7 @@ pre code {
 
 /* LAYOUT CSS */
 .cover {
-  background-color: #f5f5f5;
+  background-color: #f8f8f8;
   position: fixed;
   text-align: center;
   width: 100%;
@@ -1456,16 +1456,15 @@ pre code {
     float: none; }
   .cover-card .author_name {
     display: block;
-    color: #F36170;
+    color: #ffa500;
     font-size: 1.75em;
-    text-transform: lowercase; }
+    text-transform: uppercase; }
   .cover-card .author_job {
     display: block;
     color: #8d7edc;
     font-size: 0.8em;
     font-weight: 700;
-    text-transform: uppercase;
-    margin: -5px auto 10px; }
+    text-transform: uppercase; }
   .cover-card .author_bio {
     font-size: 90%;
     display: block; }
@@ -1490,7 +1489,6 @@ pre code {
           color: #bfb6eb; }
 
 .nav-list {
-  margin: 0;
   padding: 0;
   list-style: none; }
   .nav-list .nav-item {
@@ -1551,7 +1549,7 @@ ul.tag-cloud {
     left: -2px;
     height: 100%;
     width: 4px;
-    background: #f5f5f5; }
+    background: #f8f8f8; }
   .archive #timeline:after {
     content: "";
     display: table;
