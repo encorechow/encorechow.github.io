@@ -18,3 +18,7 @@ Please read this [Caffe Development](https://github.com/BVLC/caffe/wiki/Developm
 
 
 # Basic Concept in Caffe
+[Reference][http://caffe.berkeleyvision.org/tutorial/]
+Also, you can go to official website of Caffe to understand the fundamental usage of Caffe as well as some concepts. This Chapter will briefly discuss what I understand from development.
+
+*To Be Updated...*
