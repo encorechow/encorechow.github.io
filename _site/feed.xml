@@ -5,8 +5,8 @@
     <description>Jay&#39;s Technical Zone</description>
     <link>/</link>
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 18 Oct 2016 22:43:48 -0700</pubDate>
-    <lastBuildDate>Tue, 18 Oct 2016 22:43:48 -0700</lastBuildDate>
+    <pubDate>Fri, 21 Oct 2016 20:32:41 -0700</pubDate>
+    <lastBuildDate>Fri, 21 Oct 2016 20:32:41 -0700</lastBuildDate>
     <generator>Jekyll v3.1.6</generator>
     
       <item>
@@ -106,11 +106,18 @@ C= [10,15,20,35,40,50,60,70,100] and fourth smallest element is 35.&lt;/em&gt;&l
     
       <item>
         <title>Caffe Framework Development Guide</title>
-        <description>&lt;p&gt;&lt;em&gt;A CAFFE A DAY, KEEPS THE GRUMPY AWAY. - BY UNKNOWN&lt;/em&gt;&lt;/p&gt;
+        <description>&lt;p&gt;&lt;em&gt;A CAFFE A DAY, KEEPS THE GRUMPY AWAY.&lt;/em&gt;&lt;/p&gt;
 
 &lt;h1 id=&quot;introduction&quot;&gt;Introduction&lt;/h1&gt;
 
-&lt;p&gt;To Be Updated…&lt;/p&gt;
+&lt;p&gt;Since deep learning became extremely prevalent today, more and more developers and researchers are digging into different deep learning framework. Comparing with old-school machine learning algorithm, deep learning is definitely a more fancy way to present the machines’ perspective of the world. So it is worth learning some of the deep learning frameworks and get your feet wet on deep learning. Here is what I know currently the most popular deep learning frameworks: &lt;strong&gt;&lt;em&gt;Theano, Tensorflow, Keras, Caffe, Torch.&lt;/em&gt;&lt;/strong&gt; All of above frameworks support GPU computing and CUDA cuDNN. This post will mainly focus on the Caffe source code and how to work on your own deep learning layers.
+Please read this &lt;a href=&quot;https://github.com/BVLC/caffe/wiki/Development&quot;&gt;Caffe Development&lt;/a&gt; first before you want to get something more advanced in my experience.&lt;/p&gt;
+
+&lt;h1 id=&quot;basic-concept-in-caffe&quot;&gt;Basic Concept in Caffe&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&quot;http://caffe.berkeleyvision.org/tutorial/&quot;&gt;Reference&lt;/a&gt;
+Also, you can go to official website of Caffe to understand the fundamental usage of Caffe as well as some concepts. This Chapter will briefly discuss what I understand from development.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;To Be Updated…&lt;/em&gt;&lt;/p&gt;
 </description>
         <pubDate>Mon, 26 Sep 2016 00:00:00 -0700</pubDate>
         <link>/articles/2016-09/Caffe-Framework-Development-Guide</link>
