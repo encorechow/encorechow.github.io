@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Machine Learning nano-degree notebook</title>
+  <meta name="description" content="Udacity machine learning nano-degree notebook.">
+
+  <!-- CSS files -->
+  <link rel="stylesheet" href="/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/main.css">
+
+  <link rel="canonical" href="/articles/2016-10/Machine-Learning-Nanodegree-Notebook">
+  <link rel="alternate" type="application/rss+xml" title="Neverland" href=" /feed.xml " />
+
+  <!-- Icons -->
+  <!-- 16x16 -->
+  <link rel="shortcut icon" href="/favicon.ico">
+  <!-- 32x32 -->
+  <link rel="shortcut icon" href="/favicon.png">
+</head>
+
+
+<body>
+  
+  <div class="row">
+    <div class="col s12 m3">
+      <div class="table cover">
+        
+
+<div class="cover-card table-cell table-middle">
+  
+  <img src="/img/avatar.jpg" alt="" class="avatar">
+  
+  <a href="/" class="author_name">ZHENG ZHOU</a>
+  <span class="author_job">Student (Master of Science)</span>
+  <span class="author_bio mbm">I am undating myself...</span>
+  <nav class="nav">
+    <ul class="nav-list">
+         
+      <li class="nav-item">
+        <a href="/archive/">Archive</a>
+        <span>/</span>
+      </li>
+          
+      <li class="nav-item">
+        <a href="/categories/">Categories</a>
+        <span>/</span>
+      </li>
+            
+      <li class="nav-item">
+        <a href="/tags/">Tags</a>
+      </li>
+       
+    </ul>
+  </nav>
+  <div class="social-links">
+  <ul>
+    <li><a href="mailto:encorechow1992@gmail.com" class="social-link-item" target="_blank"><i class="fa fa-fw fa-envelope"></i></a></li>
+    
+    <li><a href="http://facebook.com/axieandyangyang" class="social-link-item" target="_blank"><i class="fa fa-fw fa-facebook"></i></a></li>
+    
+    <li><a href="http://linkedin.com/in/zhou-zheng-378041a5" class="social-link-item" target="_blank"><i class="fa fa-fw fa-linkedin"></i></a></li>
+    
+    
+    
+    <li><a href="http://github.com/encorechow" class="social-link-item" target="_blank"><i class="fa fa-fw fa-github"></i></a></li>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </ul>
+</div>
+
+  <nav class="nav">
+  <ul class="nav-list">
+    <li class="nav-item">
+      <a href="/aboutme/">About Me</a>
+    </li>
+  </ul>
+</nav>
+
+</div>
+
+      </div>
+    </div>
+
+    <div class="col s12 m9">
+      <div class="post-listing">
+        <a class="btn" href= "/" >
+  Home
+</a>
+
+<div class="post-image-feature">
+  <img class="feature-image" src=
+  
+  "/img/ml_pictogram.png"
+  
+  alt="Machine Learning nano-degree notebook feature image">
+
+  
+</div><!-- /.image-wrap -->
+
+
+<div id="post">
+  <header class="post-header">
+    <h1 title="Machine Learning nano-degree notebook">Machine Learning nano-degree notebook</h1>
+    <span class="post-meta">
+      <span class="post-date">
+        30 OCT 2016
+      </span>
+      •
+      <span class="read-time" title="Estimated read time">
+  
+  
+    23 mins read
+  
+</span>
+
+    </span>
+
+  </header>
+
+  <article class="post-content">
+    <h1 id="basics">Basics</h1>
+
+<h2 id="some-concepts">1. Some Concepts</h2>
+
+<h3 id="day-1">Day 1</h3>
+
+<h4 id="all-about-mode-median-and-average">1.1. All about mode, median and average</h4>
+
+<p>Given a set of data, suppose we have frequencies as Y axis and numbers as X axis. After we Draw out a histogram:
+<img src="/assets/hist.png" alt="Figure1" /></p>
+
+<p>Here is Some concepts in terms of statistics:</p>
+
+<ul>
+  <li>The value at which frequency is highest is called <strong>Mode</strong> (Mode can be a range that occurred with the highest frequency)</li>
+  <li>Value in the middle is called <strong>Median</strong></li>
+  <li>Average (Mean)
+Above three values can help describe the distributions of the data set.</li>
+</ul>
+
+<h5 id="mode">1.1.1. Mode</h5>
+
+<p><em>Uniform Distributions</em> has no mode. Some of the distributions even have multiple modes. Mode depends on how you present your data.</p>
+
+<h5 id="mean">1.1.2. Mean</h5>
+<p>Always using the formula <script type="math/tex">\bar{x} = \frac{\sum x}{n}</script> to calculate the mean of data set. Followings are the properties of mean:</p>
+
+<ul>
+  <li>All scores in the distributions affect the mean.</li>
+  <li>The mean can be described with a formula.</li>
+  <li>Many samples from the same population will have similar mean.</li>
+  <li>The mean of a sample can be used to make inferences about the population it came from.</li>
+</ul>
+
+<h5 id="median">1.1.3. Median</h5>
+
+<p>the Median of a data set is robust against outlier.</p>
+
+<h5 id="summary">Summary</h5>
+
+<p>Mean, Median, Mode describe the center of the distributions, so they are measures of center. Sometimes mean doesn’t describe the center because of outlier, and Mode doesn’t describe the center because mode depends on how you present your data, and Median doesn’t describe the center because it doesn’t take every data point into account. Sometimes in order to avoid the influence of outlier, data scientist usually cut off 25% upper tails of the data and 25% lower tails.</p>
+
+<h4 id="range-and-outlier">1.2. Range and outlier</h4>
+
+<h5 id="range">1.2.1. Range</h5>
+
+<p>Inter-quantile range: First split the data into two halves, then calculate the median of the upper half and lower half respectively. Let’s say the upper median is Q1, the lower median is Q3, and the median of data set is Q2. Inter-quantile is the range between Q1 to Q3 (IQR). IQR has the properties that
+1. About 50% of the data falls within it;
+2. The IQR is not affected by outliers.</p>
+
+<h5 id="outlier">1.2.2. Outlier</h5>
+
+<p>A datum x can be consider as an outlier when (Q1 is the first quantile and Q3 is the third quantile):</p>
+
+<ol>
+  <li>For outlier x, <script type="math/tex">% <![CDATA[
+x < Q1 - 1.5\times(IQR) %]]></script>;</li>
+  <li>For outlier x, <script type="math/tex">x > Q3 + 1.5\times(IQR)</script>;</li>
+</ol>
+
+<h4 id="distributions">1.3. Distributions</h4>
+
+<p>Normal Distributions (<script type="math/tex">\sigma</script> is standard deviation):</p>
+
+<ul>
+  <li>68% percent of data fall between <script type="math/tex">\bar{x}-\sigma</script> and <script type="math/tex">\bar{x}+\sigma</script>.</li>
+  <li>95% percent of data fall between <script type="math/tex">\bar{x}-2\times\sigma</script> and <script type="math/tex">\bar{x}+2\times\sigma</script>.</li>
+</ul>
+
+<p>Bessel’s Correction:</p>
+
+<p>Divided by N-1, we get a bigger number of standard deviation. Since the samples tend to be values in the middle of the population. In this case , the variability (variance) of the samples will be less than the variability of the entire population. Therefore we correct the standard deviation to make it a little bit bigger by put N-1 in the denominator: <script type="math/tex">SD = \sqrt{\frac{1}{N-1} \sum_{i=1}^N (x_i - \overline{x})^2}</script>, which is called <strong>Sample Standard Deviation</strong>.</p>
+
+<hr />
+
+<h3 id="day-2">Day 2</h3>
+
+<h4 id="data-type">1.4. Data Type</h4>
+
+<ul>
+  <li>Numeric Data
+    <ul>
+      <li>Data have exactly numbers as measurement.</li>
+      <li>Discrete or continuous.</li>
+    </ul>
+  </li>
+  <li>Categorical Data
+    <ul>
+      <li>Represent characteristics.</li>
+      <li>Can take numeric value, but don’t have mathematical meaning.</li>
+      <li>Ordinal data</li>
+    </ul>
+  </li>
+  <li>Time-series data
+    <ul>
+      <li>Data collected via repeated measurements over time. (date, timestamp)</li>
+    </ul>
+  </li>
+  <li>Text
+    <ul>
+      <li>Words</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="bias-and-variance">1.5. Bias and Variance</h4>
+
+<ul>
+  <li>High Bias means the model has high error on training data set (low &amp;&amp;R^2&amp;&amp;, large SSE), the model pays little attention to data, it’s oversimplified.</li>
+  <li>High variance means the model has much higher error on testing data set but low error on training data set, since it pays too much attention to data (Does not generalize well), which cause overfit.</li>
+</ul>
+
+<h4 id="curse-of-dimensionality">1.6. Curse of Dimensionality</h4>
+
+<p>As the number of features or dimensionality grows, the amount of data that we need to generalize accurately also grows exponentially.</p>
+
+<hr />
+
+<h1 id="supervised-learning">Supervised Learning</h1>
+
+<p>Training a model on a set of data points with their actual labels or values.</p>
+
+<h2 id="regression--classification">2. Regression &amp; Classification</h2>
+
+<h3 id="day-3">Day 3</h3>
+
+<h4 id="polynomial-regression">2.1. Polynomial Regression</h4>
+
+<p>Suppose X (only one feature) is a matrix of data points and W is a weight vector, and Y is the vector of target value for corresponding value in X:</p>
+
+<p><script type="math/tex">% <![CDATA[
+X = \begin{bmatrix}
+    x_{1} & x_{1}^2 & x_{1}^3 & \dots  & x_{1}^n \\
+    x_{2} & x_{2}^2 & x_{2}^3 & \dots  & x_{2}^n \\
+    \vdots & \vdots & \vdots & \ddots & \vdots \\
+    x_{d} & x_{d}^2 & x_{d}^3 & \dots  & x_{d}^n
+\end{bmatrix} %]]></script>,
+<script type="math/tex">W = \begin{bmatrix}
+    w_{1} \\
+    w_{2} \\
+    \vdots \\
+    w_{d}
+\end{bmatrix}</script></p>
+
+<p>We can solve <script type="math/tex">X\times W = Y</script> to find what exactly W is by following calculus:</p>
+
+<p><script type="math/tex">XW \approx Y \\
+X^TXW \approx X^TY \space \text{(X^TX will have an inverse)}\\
+(X^TX)^{-1}X^TXW \approx (X^TX)^{-1}X^TY \\
+W \approx (X^TX)^{-1}X^TY</script>
+That gives us the exact coefficient that we need to do the polynomial regression.</p>
+
+<h4 id="iid">2.2. IID</h4>
+
+<p>There is a huge fundamental assumption for a lot of algorithms which is so called IID. IID stands for independent identical distribution, which assumes that all training, testing and real world data for a problem comes from independent and identical distribution. Otherwise we can not fit a model well.</p>
+
+<hr />
+
+<h3 id="day-4">Day 4</h3>
+
+<h4 id="linear-regression">2.3. Linear Regression</h4>
+
+<p>The best regression is the one that:</p>
+
+<script type="math/tex; mode=display">\DeclareMathOperator*{\minimize}{minimize}
+\displaystyle{\minimize \sum_{\text{all training points}} (\text{actual} - \text{predicted})^2}</script>
+
+<p>Several algorithms to minimize sum of squared errors:
+- ordinary least squares (OLS) (used by sklearn)
+- Gradient decent</p>
+
+<p>Why squared errors? There can be multiple lines that minimize <script type="math/tex">\sum \|error\|</script>, but only one line will minimize <script type="math/tex">\sum error^2</script>. Furthermore, Using SSE also makes implementation much easier. But one problem of SSE is that larger SSE doesn’t mean the model doesn’t fit well because the SSE is guarantee to grow as we add more data. Doing comparison on two models over different number of data will be ambiguous.</p>
+
+<h5 id="r2-r-squared-of-a-regression">2.3.1. <script type="math/tex">R^2</script> “R squared” of a regression</h5>
+
+<p><script type="math/tex">R^2</script> answers the question “how much of my change in the output (y) is explained by the change in my input(x)”.
+<script type="math/tex">% <![CDATA[
+0.0 < R^2 < 1.0 %]]></script>
+If R^2 is small, that means the model doesn’t fit very well since the model doesn’t capture trend in data. If R^2 is large, that means the model does a good job of describing relationship between input(x) and output(y).</p>
+
+<p>Here is a comparison matrix of Classification and Regression:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Properties</th>
+      <th style="text-align: left">Supervised Classification</th>
+      <th style="text-align: left">Regression</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">output type</td>
+      <td style="text-align: left">discrete (class labels)</td>
+      <td style="text-align: left">continuous (number)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">what are you tring to find</td>
+      <td style="text-align: left">decision boundary</td>
+      <td style="text-align: left">“bset fit line (hyperplate)”</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">evaluationo</td>
+      <td style="text-align: left">accuracy</td>
+      <td style="text-align: left">“sum of squared error” or <script type="math/tex">R^2</script></td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="parametric-regression-multi-variate-regression-k-nearest-neighborknn-kernel-regression">2.4. Parametric Regression ,Multi-variate Regression, k nearest neighbor(KNN), Kernel Regression</h4>
+
+<ul>
+  <li>Parametric Regression has the form like: <script type="math/tex">y = m_2\times X^2 + m_1\times X + b</script>, It considers the parameters of the model and after training process, it tosses training data away and just use the parameters later on to predict the queries.</li>
+  <li>
+    <p>Multi-variate Regression has the form like: <script type="math/tex">y = W_1X_1 + W_2X_2 + ... + W_nX_n</script>, which means you have multiple variable in the model. It belongs to parametric regression.</p>
+  </li>
+  <li>k nearest neighbor(KNN) finds K nearest points and calculate the mean y value to get the result. In KNN, each neighbor normally has same weight.</li>
+  <li>Kernel Regression differ from KNN in the way that kernel regression weighted each nearest neighbor point to take their importance into account.</li>
+</ul>
+
+<p>KNN and Kernel Regression are both instance based method (non-parametric) where we keep the data and we consult when we make a query.</p>
+
+<p>Parametric approach usually doesn’t have to store original data. So it’s space efficient. But we can’t update the model when there are more upcoming data. Usually we have to do a complete re-run of training process. Therefore parametric approach is training slow but querying fast.
+Non-parametric has to store all data points. It’s hard to apply when we have a huge amount of data points. But new evidence (data point) can be added in very easily. Since no parameter needs to be learn.</p>
+
+<hr />
+
+<h2 id="decision-tree">3. Decision Tree</h2>
+
+<h3 id="day-5">Day 5</h3>
+<p>Decision tree is NP problem if we are trying to find all possible output of a problem like XOR expression.</p>
+
+<h4 id="id3-algorithms">3.1. ID3 algorithms:</h4>
+
+<p>Loop:
+  - A &lt;- best attribute
+  - Assign A as decision attribute for node
+  - For each value of A, create a descendent of node
+  - Sort training examples to leaves based upon exactly what the value takes on
+  - If examples perfectly classified, Stop
+  - Else iterate over leaves</p>
+
+<p>What is best attribute? best attribute has maximum information gain.</p>
+
+<script type="math/tex; mode=display">GAIN(S, A) = Entropy(S) - \sum_v \frac{\|S_v\|}{\|S\|}Entropy(S_v)</script>
+
+<p>More mathematically:</p>
+
+<script type="math/tex; mode=display">I(Y, X) = H(Y) - H(Y|X)</script>
+
+<script type="math/tex; mode=display">H(Y|X) = \sum_x P(X = x)H(Y|X = x)</script>
+
+<h4 id="id3-bias">3.2. ID3 bias</h4>
+
+<p>Restriction bias : All the hypothesis in hypothesis set H we will consider
+Preference bias : What sort of hypothesis from the hypothesis set we prefer <script type="math/tex">h \subset H</script></p>
+
+<p>Inductive Bias: Given a whole bounch of decision trees, which dicision trees will ID3 prefer over others.
+  - Good splits at top
+  - Prefer correct over incorrect (model)
+  - Shorter trees</p>
+
+<h4 id="continuous-attribute">3.3. Continuous Attribute</h4>
+
+<p>e.g. Age, weight, distance. In decision tree, we can do range for each node if the attributes are continuous.</p>
+
+<h4 id="when-the-decision-tree-stop">3.4. When the decision tree stop?</h4>
+
+<ul>
+  <li>We can do pruning.</li>
+</ul>
+
+<h4 id="regression-in-decision-tree">3.5. Regression in decision tree</h4>
+
+<p>Actually either way we can do vote on the leaves.</p>
+
+<hr />
+
+<h3 id="day-6">Day 6</h3>
+
+<p>Sklearn Decision Tree Interface: <a href="http://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeClassifier.html">Decision Tree</a></p>
+
+<h4 id="entropy">3.6. Entropy</h4>
+
+<p>Entropy is very powerful thing, which controls how a decision tree decide where to split the data.</p>
+
+<ul>
+  <li>Definition: measure of impurity in a bunch of samples.</li>
+</ul>
+
+<p>Mathematical formula of entropy: <script type="math/tex">\sum_i -p_ilog_2(p_i)</script> (i is the totally number of class (for classification) in this node)</p>
+
+<p>Again, Information gain is the opposite of entropy, which measure how much information we get if we split the data in a certain way.</p>
+
+<ul>
+  <li>Information Gain = entropy(parent) - [weighted average] * entropy(children)</li>
+</ul>
+
+<p>Decision Tree algorithm will maximize information gain. By default, Decision Tree in Sklearn uses gini to measure the impurity of a node, which is slightly different from entropy and information gain.</p>
+
+<h2 id="neural-network">4. Neural Network</h2>
+
+<h4 id="perceptron">4.1. Perceptron</h4>
+
+<p>Suppose we have an input vector X and initial weight vector W; in addition we have a firing threshold <script type="math/tex">\theta</script>. We measure whether <script type="math/tex">activation(\sum_i^k X_iW_i)</script> is greater or smaller than <script type="math/tex">\theta</script> to output the result. This is called perceptron.</p>
+
+<h5 id="perceptron-training">Perceptron Training</h5>
+
+<p>Given examples, find weights that map input to outputs. We have two algorithms to solve this:</p>
+
+<ul>
+  <li>Perceptron rule (threshold)</li>
+  <li>Gradient descent / delta rule (un-threshold)</li>
+</ul>
+
+<h5 id="perceptron-rule">Perceptron Rule</h5>
+
+<p>Update rule:</p>
+
+<p>y: target; <script type="math/tex">\hat y</script>: output; <script type="math/tex">\mu</script>: learning rate; x: input</p>
+
+<script type="math/tex; mode=display">W_i = W_i + \Delta W_i</script>
+
+<script type="math/tex; mode=display">\Delta W_i = \mu (y-\hat y)X_i</script>
+
+<script type="math/tex; mode=display">\hat y = (\sum_i w_ix_i \geq 0)</script>
+
+<h3 id="day-7">Day 7</h3>
+
+<p><em>little remainder:</em></p>
+
+<ol>
+  <li>
+    <p><em>The purpose of cross-validation is model checking, not model building. For example, let’s say we have two model: liear regression and neural network. For a specific data set, if we want to know which one performs better than another, we should use cross-validation to do model checking and pick up the one that has better accuracy over the cross-validation data set.</em></p>
+  </li>
+  <li>
+    <p><em>cross-validation is also helpful to find the better hyper-parameters. For example, Given a list of <script type="math/tex">\lambda</script>(hyper-parameter of regularization), we want to find out which value performs better among all for a trained model to reduce overfitting. In this scenario, cross-validation will do the trick.</em></p>
+  </li>
+</ol>
+
+<h4 id="gradient-descent">4.2. Gradient Descent</h4>
+
+<p>The basic principle of Gradient Descent is pretty similar to perceptron update rule. But instead of considering the output to be discrete, gradient descent take advantage of the continuous output and differentiate the loss function based on this continuous output with its actual label. Say we have a sum of squared loss <script type="math/tex">L(w) = \frac{1}{2}\sum_{(x,y)\subset D} (y - a)^2</script>. The purpose is to minimize the loss as much as we can. There are actually multiple ways to do that. Gradient Descent is one of them.</p>
+
+<p>So in order to minimize the loss, we have to know the direction of current loss. By differentiating the loss function we can know exactly how to update our weights to reach the extreme point. For example, if the derivative of the loss function is greater than 0, we should decrease our weight in some amount for reaching the optima. Otherwise we increase our weight.</p>
+
+<p>Learning rate controls how much we should update on our weights.</p>
+
+<p>It has chance that the optimization of neural network ends up with local optima since the non-linearity of neural network and randomness of the initial weights.</p>
+
+<h4 id="summary-1">Summary</h4>
+
+<ul>
+  <li>Perceptron -&gt; threshold</li>
+  <li>Network can produce any boolean function</li>
+  <li>Perceptron rule -&gt; finite time for linearly separable data set</li>
+  <li>General differentiable rule -&gt; basic propagation and gradient descent</li>
+  <li>Preference / restriction bias of neural network</li>
+</ul>
+
+<h2 id="support-vector-machine">5. Support Vector Machine</h2>
+
+<h3 id="day-8">Day 8</h3>
+
+<h4 id="svm-overview">5.1 SVM overview</h4>
+
+<p>In some situations, we try to not only find the line or hyper-plate that separates multiple classes of data, but we also seek for the best line that splits the data apart. The chart below shows three lines that achieve the purpose to separate a random data set.</p>
+
+<style>
+.plotsamples {
+  font: 10px sans-serif;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.annotation {
+  font: 10px monaco;
+  stroke: black;
+  stroke-width: 0.8px;
+}
+
+.area {
+  fill: lightsteelblue;
+}
+
+.line {
+  fill: none;
+  stroke: steelblue;
+  stroke-width: 1.5px;
+}
+
+.dot {
+  fill: white;
+  stroke-width: 1.5px;
+}
+
+.neg_dot {
+  stroke: steelblue;
+}
+
+.pos_dot{
+  stroke: red;
+}
+
+
+</style>
+
+<div class="plotsamples"></div>
+<script src="//d3js.org/d3.v4.0.0-alpha.4.min.js"></script>
+
+<script>
+
+var randomRange = function(min, max){
+  return Math.random() * (max - min) + min
+};
+
+var boundary1 = d3.range(-1,10).map(function(i) {
+  return {x: i / 10, y: (-5/3)*(i/10) + 0.5};
+});
+
+var boundary2 = d3.range(-1,10).map(function(i) {
+  return {x: i / 10, y: (-5/3)*(i/10) + 0.65};
+});
+
+var boundary3 = d3.range(-1,10).map(function(i) {
+  return {x: i / 10, y: (-5/3)*(i/10) + 0.8};
+});
+
+var neg_data = d3.range(40).map(function(i) {
+  var dx = randomRange(0, 0.3)
+  var dy = randomRange(0, (-5/3)*dx + 0.5)
+  if (i == 20){
+    dy = (-5/3)*dx + 0.5
+  }
+  return {x: dx, y: dy}
+});
+
+var pos_data = d3.range(40).map(function(i) {
+  var dx = randomRange(0, 1)
+  var dy = randomRange((-5/3)*dx + 0.8, 1)
+  if (i == 20){
+    dy = (-5/3)*dx + 0.8
+  }
+  return {x: dx, y: dy}
+});
+
+var boundaries = [
+  boundary1,
+  boundary2,
+  boundary3,
+]
+
+var names = ["line1", "line2", "line3"];
+
+var strokes = ["steelblue", "green", "steelblue"];
+
+var margin = {top: 40, right: 40, bottom: 40, left: 40},
+    width = 660 - margin.left - margin.right,
+    height = 500 - margin.top - margin.bottom;
+
+var x = d3.scaleLinear()
+    .range([0, width]);
+
+var y = d3.scaleLinear()
+    .range([height, 0]);
+
+
+var line = d3.line()
+    .defined(function(d) { return d; })
+    .x(function(d) { return x(d.x); })
+    .y(function(d) { return y(d.y); });
+
+
+var svg = d3.select(".plotsamples").append("svg")
+    .datum(boundaries)
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+svg.append("g")
+    .attr("class", "axis axis--x")
+    .attr("transform", "translate(0," + height + ")")
+    .call(d3.axisBottom().scale(x));
+
+svg.append("g")
+    .attr("class", "axis axis--y")
+    .call(d3.axisLeft().scale(y));
+
+
+var lines = svg.selectAll(".line")
+    .data(boundaries)
+    .enter().append("g")
+    .attr("class", "line")
+
+
+lines.append("path")
+    .attr("class", "line-path")
+    .style("stroke", function(d, i){
+      return strokes[i % strokes.length]
+    })
+    .attr("d", line)
+
+lines.append("text")
+    .datum(function(d, i){return {name: names[i], value: d[1]}})
+    .attr("class", "annotation")
+    .attr("transform", function(d) { return "translate(" + x(d.value.x) + "," + y(d.value.y) + ")"; })
+    .attr("x", 1)
+    .text(function(d) { return d.name; });
+
+svg.selectAll(".neg_dot")
+    .data(neg_data)
+    .enter().append("circle")
+    .attr("class", "dot neg_dot")
+    .attr("cx", line.x())
+    .attr("cy", line.y())
+    .attr("r", 2.5);
+
+svg.selectAll(".pos_dot")
+    .data(pos_data)
+    .enter().append("circle")
+    .attr("class", "dot pos_dot")
+    .attr("cx", line.x())
+    .attr("cy", line.y())
+    .attr("r", 2.5);
+</script>
+
+<p>Apparently, our intuition tells us that the green line separate the data set perfectly. We can observe that there are some points lie on the line1 and line2, which means if we use these two line as our boundaries, some of the points can be ambiguous when we classify them.</p>
+
+<p>But what is the best boundary? As we can see in the graph, the distance between two blue lines tells us how far the most ambiguous points in ecah classes away from each other. This distance might be able to support us to figure out the best boundary.</p>
+
+<p>Suppose we have class -1 and class 1 (<script type="math/tex">y \subset \{-1, 1\}</script>). If the points lie on the boundary (hyper-plate), our classify is not sure which class that point belongs to, so we will have:</p>
+
+<p><script type="math/tex">W^TX + b = 0</script> (the green line)</p>
+
+<p>and we can also say that:</p>
+
+<script type="math/tex; mode=display">W^TX + b = 1</script>
+
+<script type="math/tex; mode=display">W^TX + b = -1</script>
+
+<p>For other two blue lines. We actually want to maximize the the distance between the two blue lines. Given a point <script type="math/tex">x_1</script> lies on the line1 and point <script type="math/tex">x_2</script> lies on the line2, after putting them into the equation and subtracting them we have:</p>
+
+<script type="math/tex; mode=display">W^T(x_1 - x_2) = 2</script>
+
+<p>Now we want to know what <script type="math/tex">x_1 - x_2</script> is (the distance between these two points). Intuitively we can divide left and right by W. Since W is a vector, There is not way to divide it at least in the really world. Instead of dividing W directly, we can divide the norm of W from both side. That gives us normalized version of W. So now we have:</p>
+
+<script type="math/tex; mode=display">\frac{W^T}{\|W\|}(x_1 - x_2) = \frac{2}{\|W\|}</script>
+
+<p>Actually the whole thing on the left represents the distance of <script type="math/tex">x_1</script> and <script type="math/tex">x_2</script> projected on W direction. This is called margin. We want to find a line that maximizes the margin specifically, which is also <script type="math/tex">\frac{2}{\|W\|}</script>.</p>
+
+<p>Then the problem becomes: maximize <script type="math/tex">\frac{2}{\|W\|}</script> while classifying everything correctly. This problem also can be turned to minimize <script type="math/tex">\frac{1}{2}\|W^2\|</script>. The minimization problem will be easier since it’s a quadratic problem. Quadratic programming problem has a very particular form:</p>
+
+<script type="math/tex; mode=display">W(\alpha) = \sum_i \alpha - \frac{1}{2}\sum_{ij}\alpha_i\alpha_jy_iy_jx_i^Tx_j</script>
+
+<script type="math/tex; mode=display">s.t. \alpha \geq \emptyset, \sum_i \alpha_iy_i = \emptyset</script>
+
+<p>The points that contribute to the quadratic problem are support vector. That is where SVM comes from.</p>
+
+<h4 id="kernel">5.2 Kernel</h4>
+
+<p>Sometimes the data set is not linearly separable. SVM solves this by projecting the data set to higher dimensional space. The way to do that is called kernel function. For example, quadratic kernel function is <script type="math/tex">K = (X^TY)^2</script>. There are a lot of kernel that in polynomial order, which looks like <script type="math/tex">K = (X^TY + c)^p</script></p>
+
+<h4 id="summary-2">Summary</h4>
+
+<ul>
+  <li>Margins ~ generalization &amp; overfitting</li>
+  <li>Maximize Margins (big is better)</li>
+  <li>Optimization problem for finding max margins: quadratic problem.</li>
+  <li>Support Vector.</li>
+  <li>Kernel Trick (K(x, y) -&gt; domain knowledge)</li>
+</ul>
+
+<h2 id="non-parametric-models">6. Non-parametric Models</h2>
+
+<h3 id="day-9">Day 9</h3>
+
+<h4 id="instance-based-learning">6.1. Instance Based Learning</h4>
+
+<p>In terms of instance based learning, there is actually no mathematical formula for the model. We predict the new instance by looking up the existed instances based on some criteria (e.g. Similarity)</p>
+
+<h5 id="k-nearest-neighbor">6.1.1. K nearest neighbor</h5>
+
+<p>Given:</p>
+
+<ul>
+  <li>Training Data <script type="math/tex">D = \{x_i, y_i\}</script></li>
+  <li>Distance Metric <script type="math/tex">d(q, x)</script></li>
+  <li>Number of Neighbors K</li>
+  <li>Query Point q</li>
+</ul>
+
+<p>Compute:</p>
+
+<ul>
+  <li>K smallest points for <script type="math/tex">NN = \{i: d(q, x_i)\}</script></li>
+</ul>
+
+<p>Return:</p>
+
+<ul>
+  <li>Classification: majority vote (or weighted vote) s.t. <script type="math/tex">y_i \subset NN</script> for q (plurality)</li>
+  <li>Regression: mean (or weighted mean) s.t. <script type="math/tex">y_i \subset NN</script> for q</li>
+</ul>
+
+<h4 id="comparison-matrix-of-non-parametric-model-and-parametric-model">6.2 Comparison Matrix of Non-parametric Model and Parametric Model</h4>
+
+<table>
+  <tr>
+    <th></th>
+    <th>Time</th>
+    <th>Space</th>
+  </tr>
+  <tr>
+    <td rowspan="2">1-NN</td>
+    <td>(Learning) 1</td>
+    <td>(Learning) N</td>
+  </tr>
+  <tr>
+    <td>(Query) logN (Binary Search)</td>
+    <td>(Query) 1</td>
+  </tr>
+  <tr>
+    <td rowspan="2">K-NN</td>
+    <td>(Learning) 1</td>
+    <td>(Learning) N</td>
+  </tr>
+  <tr>
+    <td>(Query) logN + K</td>
+    <td>(Query) 1</td>
+  </tr>
+  <tr>
+    <td rowspan="2">Linear Regression</td>
+    <td>(Learning) N</td>
+    <td>(Learning) 1</td>
+  </tr>
+  <tr>
+    <td>(Query) 1</td>
+    <td>(Query) 1</td>
+  </tr>
+</table>
+
+<p>Basically, Instance based learning is called lazy learner, while parametric learning is called eager learner.</p>
+
+<h4 id="preference-bias-for-knn">6.3 Preference Bias for KNN</h4>
+
+<p>Remember preference bias is a notion of why we prefer one hypothesis over another, which is also our belief about what makes a good hypothesis.</p>
+
+<ul>
+  <li>Locality -&gt; near points are similar.</li>
+  <li>Smoothness -&gt; averaging.</li>
+  <li>All features matters equally.</li>
+</ul>
+
+<h4 id="summary-3">Summary</h4>
+
+<p>In KNN, Distance metric really matters a lot. We should always try to choose a suitable distance metric for a specific problem.</p>
+
+<p>There is some other stuff that is worth mentioning. After we picked up a bunch of nearest neighbor, we could do a regression on these neighbors, which is called locally weighted regression.</p>
+
+<h2 id="bayesian-methods">7. Bayesian Methods</h2>
+
+<h4 id="bayes-rule">7.1 Bayes Rule</h4>
+
+<p>Given some data and domain knowledge, we want to learn the best hypothesis for these data. That also means we want to learn the most possible hypothesis. That is, we are trying to find a hypothesis that:</p>
+
+<script type="math/tex; mode=display">argmax_{h\subset H} Pr(h|D)</script>
+
+<p>Bayes Rule can be expressed as following given observed data D to find the probability of h (hypothesis) based on D:</p>
+
+<script type="math/tex; mode=display">Pr(h|D) = \frac{Pr(D|h)Pr(h)}{Pr(D)}</script>
+
+<p>joint probability:</p>
+
+<script type="math/tex; mode=display">Pr(a, b) = Pr(a|b)Pr(b)</script>
+
+<script type="math/tex; mode=display">Pr(a, b) = Pr(b|a)Pr(a)</script>
+
+<p>Actually the <script type="math/tex">Pr(D)</script> is the prior belief of seeing some particular set of data (prior on the data).</p>
+
+<p>So <script type="math/tex">Pr(D|h)</script> can be explained as given a hypothesis h, what is the probability of the data.
+The data is composed as <script type="math/tex">\{(X_i, label_i)\}</script>. what that really means is, Given a set of <script type="math/tex">X_i</script>, Given a real world that h is true, what is the likelihood that we will see the particular <script type="math/tex">label_i</script>. This is like running hypothesis, for example, labeling the data manually.</p>
+
+<p><script type="math/tex">Pr(h)</script> is the prior on a particular hypothesis drawn from the hypothesis space. Which encapsulates our prior belief that one hypothesis is likely or unlikely compared with another hypothesis.</p>
+
+<h3 id="day-10">Day 10</h3>
+
+<h4 id="bayesian-learning">7.2 Bayesian Learning</h4>
+
+<p>The algorithm of bayesian learning:</p>
+
+<p>For each <script type="math/tex">h\subset H</script>:<br />
+  calculate: <script type="math/tex">Pr(h|D) = \frac{Pr(D|h)Pr(h)}{Pr(D)}</script><br />
+  Output: <script type="math/tex">h = argmax_h Pr(h|D)</script></p>
+
+<p><script type="math/tex">Pr(D)</script> can be ignored in terms of argmax.<br />
+This is called MAP, namely, maximum a posterior.</p>
+
+<p>If we ingore <script type="math/tex">Pr(h)</script>, we are actually computing the maximum likelihood, which is:</p>
+
+<script type="math/tex; mode=display">h_{ML} = argmax_h Pr(D|h)</script>
+
+<p>We are not actually dropping the <script type="math/tex">Pr(h)</script>. What we are really saying is the prior is uniform (1 / size of hypothesis), they are equally likely. For example, we have a classification problem that only has two classes and their prior is all 0.5. So they are equally likely. Thus <script type="math/tex">Pr(h)</script> will not affect the result of argmax.</p>
+
+<h2 id="ensemble-learning-boosting">8. Ensemble Learning Boosting</h2>
+
+<h3 id="day-11">Day 11</h3>
+
+<h4 id="ensemble-learning-simple-rules">8.1. Ensemble Learning Simple Rules</h4>
+
+<p>The reason that we want to use ensemble is sometimes a single feature or a couple of features can not fully represent what a truth is going to be. Neural network can be treat as a part of ensemble model in some senses.</p>
+
+<p>Ensemble learning consists of:</p>
+
+<ol>
+  <li>Learning over a subset of data<br />
+  -&gt; Uniformly randomly pick data, and apply a learner (Bagging)<br />
+  -&gt; Focusing on hard examples (Boosting)</li>
+  <li>Combine the results together<br />
+  -&gt; mean, averaging (Bagging)<br />
+  -&gt; weighted mean (Boosting)</li>
+</ol>
+
+<h4 id="boosting">8.2. Boosting</h4>
+
+<p>Pseudocode of Boosting (Binary Classification):</p>
+
+<ul>
+  <li>Given a training set <script type="math/tex">\{(x_i, y)\}, y \in \{1,-1\}</script></li>
+  <li>For t = 1 to T:
+    <ul>
+      <li>construct <script type="math/tex">D_t</script></li>
+      <li>find weak classifier <script type="math/tex">h_t(x)</script> with small error <script type="math/tex">\epsilon_t = Pr_{D_t}[h_t(x)=y_i]</script></li>
+    </ul>
+  </li>
+  <li>output <script type="math/tex">H_{final}</script></li>
+</ul>
+
+<h5 id="construct-distribution">8.2.1. Construct Distribution</h5>
+
+<p>The most important part 1 of boosting is construct distribution:</p>
+
+<ul>
+  <li>set up the distribution of first iteration to be uniform distribution, which is <script type="math/tex">D_1(i) = \frac{1}{n}</script>. Since we know nothing at beginning about the data set.</li>
+  <li>
+    <p>update the distribution by increasing the weight of the examples that are predicted wrong and decreasing otherwise:</p>
+
+    <script type="math/tex; mode=display">D_{t+1}(i) = \frac{D_t(i)\times e^{-\alpha_ty_ih_t(x_i)}}{Z_t} \space where \space \alpha_t = \frac{1}{2}ln\frac{1-\epsilon_t}{\epsilon_t}</script>
+  </li>
+</ul>
+
+<h5 id="output-final-result">8.2.2. Output Final Result</h5>
+
+<p>The final hypothesis will be the weighted hypothesis over all trained classifiers:</p>
+
+<script type="math/tex; mode=display">H_{final}(x) = sign(\sum_t \alpha_th_t(x))</script>
+
+<h5 id="minimize-overfitting">8.2.3. Minimize Overfitting</h5>
+
+<p>AdaBoost can minimize overfitting by adding up more and more weak learner. This ends up with a larger margin between the classified data, which means the model has more confidence to classify one point is one of the class over the other.</p>
+
+<p>Some other things: pink noise (uniform distribution) will cause boosting overfit. (white noise is gaussian noise)</p>
+
+<h4 id="summary-4">Summary</h4>
+
+<ul>
+  <li>ensembles are good.</li>
+  <li>bagging is good.</li>
+  <li>combining simple -&gt; complex.</li>
+  <li>boosting is really good. -&gt; agnostic to learner</li>
+  <li>weak learner.</li>
+  <li>error with distribution.</li>
+</ul>
+
+  </article>
+</div>
+
+<div class="share-buttons">
+  <h6>Share on: </h6>
+  <ul>
+    <li>
+      <a href="https://twitter.com/intent/tweet?text=/articles/2016-10/Machine-Learning-Nanodegree-Notebook" class="twitter btn" title="Share on Twitter"><i class="fa fa-twitter"></i><span> Twitter</span></a>
+    </li>
+    <li>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=/articles/2016-10/Machine-Learning-Nanodegree-Notebook" class="facebook btn" title="Share on Facebook"><i class="fa fa-facebook"></i><span> Facebook</span></a>
+    </li>
+    <li>
+      <a href="https://plus.google.com/share?url=/articles/2016-10/Machine-Learning-Nanodegree-Notebook" class="google-plus btn" title="Share on Google Plus"><i class="fa fa-google-plus"></i><span> Google+</span></a>
+    </li>
+    <li>
+      <a href="https://news.ycombinator.com/submitlink?u=/articles/2016-10/Machine-Learning-Nanodegree-Notebook" class="hacker-news btn" title="Share on Hacker News"><i class="fa fa-hacker-news"></i><span> Hacker News</span></a>
+    </li>
+    <li>
+      <a href="https://www.reddit.com/submit?url=/articles/2016-10/Machine-Learning-Nanodegree-Notebook" class="reddit btn" title="Share on Reddit"><i class="fa fa-reddit"></i><span> Reddit</span></a>
+    </li>
+  </ul>
+</div><!-- end share-buttons -->
+
+
+
+        <footer>
+  &copy; 2016 ZHENG ZHOU. Powered by <a href="http://jekyllrb.com/">Jekyll</a>
+</footer>
+
+      </div>
+    </div>
+
+  </div>
+  <script type="text/javascript" src="/js/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="/js/main.js"></script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+<script src="https://d3js.org/d3.v4.min.js"></script>
+
+</script>
+
+
+</body>
+</html>

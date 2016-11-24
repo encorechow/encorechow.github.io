@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Find kth smallest elements in two sorted array</title>
+  <meta name="description" content="Preparing for interviews.">
+
+  <!-- CSS files -->
+  <link rel="stylesheet" href="/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/main.css">
+
+  <link rel="canonical" href="/articles/2016-10/Find-Kth-Smallest-Element-in-Two-Sorted-Array">
+  <link rel="alternate" type="application/rss+xml" title="Neverland" href=" /feed.xml " />
+
+  <!-- Icons -->
+  <!-- 16x16 -->
+  <link rel="shortcut icon" href="/favicon.ico">
+  <!-- 32x32 -->
+  <link rel="shortcut icon" href="/favicon.png">
+</head>
+
+
+<body>
+  
+  <div class="row">
+    <div class="col s12 m3">
+      <div class="table cover">
+        
+
+<div class="cover-card table-cell table-middle">
+  
+  <img src="/img/avatar.jpg" alt="" class="avatar">
+  
+  <a href="/" class="author_name">ZHENG ZHOU</a>
+  <span class="author_job">Student (Master of Science)</span>
+  <span class="author_bio mbm">I am undating myself...</span>
+  <nav class="nav">
+    <ul class="nav-list">
+         
+      <li class="nav-item">
+        <a href="/archive/">Archive</a>
+        <span>/</span>
+      </li>
+          
+      <li class="nav-item">
+        <a href="/categories/">Categories</a>
+        <span>/</span>
+      </li>
+            
+      <li class="nav-item">
+        <a href="/tags/">Tags</a>
+      </li>
+       
+    </ul>
+  </nav>
+  <div class="social-links">
+  <ul>
+    <li><a href="mailto:encorechow1992@gmail.com" class="social-link-item" target="_blank"><i class="fa fa-fw fa-envelope"></i></a></li>
+    
+    <li><a href="http://facebook.com/axieandyangyang" class="social-link-item" target="_blank"><i class="fa fa-fw fa-facebook"></i></a></li>
+    
+    <li><a href="http://linkedin.com/in/zhou-zheng-378041a5" class="social-link-item" target="_blank"><i class="fa fa-fw fa-linkedin"></i></a></li>
+    
+    
+    
+    <li><a href="http://github.com/encorechow" class="social-link-item" target="_blank"><i class="fa fa-fw fa-github"></i></a></li>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </ul>
+</div>
+
+  <nav class="nav">
+  <ul class="nav-list">
+    <li class="nav-item">
+      <a href="/aboutme/">About Me</a>
+    </li>
+  </ul>
+</nav>
+
+</div>
+
+      </div>
+    </div>
+
+    <div class="col s12 m9">
+      <div class="post-listing">
+        <a class="btn" href= "/" >
+  Home
+</a>
+
+<div class="post-image-feature">
+  <img class="feature-image" src=
+  
+  "/img/Algorithms-In-Computer-Science.jpg"
+  
+  alt="Find kth smallest elements in two sorted array feature image">
+
+  
+</div><!-- /.image-wrap -->
+
+
+<div id="post">
+  <header class="post-header">
+    <h1 title="Find kth smallest elements in two sorted array">Find kth smallest elements in two sorted array</h1>
+    <span class="post-meta">
+      <span class="post-date">
+        16 OCT 2016
+      </span>
+      •
+      <span class="read-time" title="Estimated read time">
+  
+  
+    5 mins read
+  
+</span>
+
+    </span>
+
+  </header>
+
+  <article class="post-content">
+    <hr />
+
+<h3 id="problem-description">Problem Description</h3>
+
+<blockquote>
+  <p>Given two sorted arrays A and B of size m and n respectively. Find the k-th smallest elements in the union of A and B. You can assume that there are no duplicates. (Subproblem of LC No.4)</p>
+</blockquote>
+
+<p><em>For example if A = [10, 20, 40, 60] and B =[15, 35, 50, 70, 100] and K = 4 then solution should be 35 because union of above arrays will be
+C= [10,15,20,35,40,50,60,70,100] and fourth smallest element is 35.</em></p>
+
+<h3 id="brute-force-trivial-solution">Brute Force (Trivial Solution)</h3>
+
+<p>The trivial solution for this problem can be observed from above example. Merge two arrays to a single sorted array the k-th element can be accessed directly. Example shows C is merged from A and B and 35 is 4th element in C. If reader knows the merge sort algorithm, O(m+n) space complexity should be concluded (length of C). Likewise, time complexity is O(m+n) as well.</p>
+
+<h3 id="slightly-better-solution">Slightly Better Solution</h3>
+
+<p>Derived from trivial solution, we can apply <strong>two pointers</strong> idea in merge sort. But instead of actually merging two arrays into a single sorted array, we merely traverse both sorted arrays k steps in order to find kth smallest element. Specifically, the pointer that has smaller value of two should increment one step forward. After k steps traversal, the kth smallest element will be found. This solution is extra-space-free with total time complexity O(k) (k steps traversal)</p>
+
+<h3 id="awesome-solution-among-all">Awesome Solution among All</h3>
+
+<p>We know that n and m can be extremely large, so as the k. Linear complexity is still not ideal. Since the two arrays are sorted, we should somehow take advantage of this to obtain a logarithmic complexity. When we come up with logarithmic complexity, the first thing we should be able to consider is binary search.</p>
+
+<p>Basically, binary search achieves logarithmic complexity by separating input space into two halves in each iteration. The next iteration we are supposed to throw away one half of the array then do the same things on the other half. But how do we exactly apply binary search in two sorted arrays with different size? That can be a tricky part.</p>
+
+<p>Consider an initial guess that how the numbers that smaller than kth element distributed in two arrays. If they are evenly distributed in two arrays, that is, k/2 elements that smaller or equal than kth element in array <em>A</em> and the rest of k - k/2 elements in array <em>B</em> (Why k - k/2 instead of k/2? Consider k is an odd number). It is simple to conclude that the larger one between <em>A[k/2]</em> and <em>B[k/2]</em> is the kth element. But in the case that they are not evenly distributed, that does not work out.</p>
+
+<p>Let’s say the k/2 index in array A is <em>i</em> and the k - k/2 index in array B is <em>j</em>. In general, there are <strong>three</strong> cases (here I use 0 based indexing):</p>
+
+<ul>
+  <li><strong>A[i-1] &gt; B[j-1]</strong>: The portion of <em>B[0:j-1]</em> (<em>j-1</em> inclusive) can be discarded, since this portion is strictly smaller than <em>A[i-1]</em> The other portion we can discard is <em>A[i:len(A)]</em> (<em>i</em> inclusive). The reason is that <em>A[i-1]</em> is definitely larger than <em>len(B[0:j-1]) + len(A[0:i-2])</em> elements and there is no duplicates. If kth element locates in <em>A[i:len(A)]</em>, we will get a contradiction that kth smallest element in the position that larger than k elements and that’s apparently not true. Figure below shows how it works:</li>
+</ul>
+
+<p><img src="/assets/kth_1.jpg" alt="Figure1" /></p>
+
+<ul>
+  <li><strong>A[i-1] &lt; B[j-1]</strong>: This case is the reverse case of above. Figure below shows how it works:</li>
+</ul>
+
+<p><img src="/assets/kth_2.jpg" alt="Figure2" /></p>
+
+<ul>
+  <li><strong>Base case</strong>:
+    <ol>
+      <li>Consider if k equals to 1. The smallest number between A[k-1] and B[k-1] should be returned (0 based indexing).</li>
+      <li>As long as either of two arrays has been completely discarded, we can just return kth smallest element in the other array.</li>
+    </ol>
+  </li>
+</ul>
+
+<p>From now on, we are all set for coding.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">def</span> <span class="nf">kth_smallest</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">k</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">B</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">k</span> <span class="o">&gt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">)</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">B</span><span class="p">)):</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"Invalid input."</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">None</span>
+    <span class="k">if</span> <span class="n">k</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">min</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">B</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">B</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">A</span><span class="p">[</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">B</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">else</span> <span class="n">B</span><span class="p">[</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="n">i</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">k</span> <span class="o">//</span> <span class="mi">2</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">))</span>
+    <span class="n">j</span> <span class="o">=</span> <span class="n">k</span> <span class="o">-</span> <span class="n">i</span>
+
+    <span class="k">if</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">B</span><span class="p">[</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="n">kth_smallest</span><span class="p">(</span><span class="n">A</span><span class="p">[:</span><span class="n">i</span><span class="p">],</span> <span class="n">B</span><span class="p">[</span><span class="n">j</span><span class="p">:],</span> <span class="n">k</span><span class="o">-</span><span class="n">j</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">kth_smallest</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">:],</span> <span class="n">B</span><span class="p">[:</span><span class="n">j</span><span class="p">],</span> <span class="n">k</span><span class="o">-</span><span class="n">i</span><span class="p">)</span>
+    <span class="k">return</span> <span class="bp">None</span>
+</code></pre>
+</div>
+
+<h3 id="time-complexity-analysis">Time Complexity Analysis</h3>
+
+<p>The total time complexity has something to do with k in this solution at first glance. Suppose we have array A with size N and array B with size M, we are guaranteed to cut something from A and B more or less. Thus thinking under the entire input space M + N, the final time complexity should be O(log(M + N)) and the base of logarithmic doesn’t matter.</p>
+
+  </article>
+</div>
+
+<div class="share-buttons">
+  <h6>Share on: </h6>
+  <ul>
+    <li>
+      <a href="https://twitter.com/intent/tweet?text=/articles/2016-10/Find-Kth-Smallest-Element-in-Two-Sorted-Array" class="twitter btn" title="Share on Twitter"><i class="fa fa-twitter"></i><span> Twitter</span></a>
+    </li>
+    <li>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=/articles/2016-10/Find-Kth-Smallest-Element-in-Two-Sorted-Array" class="facebook btn" title="Share on Facebook"><i class="fa fa-facebook"></i><span> Facebook</span></a>
+    </li>
+    <li>
+      <a href="https://plus.google.com/share?url=/articles/2016-10/Find-Kth-Smallest-Element-in-Two-Sorted-Array" class="google-plus btn" title="Share on Google Plus"><i class="fa fa-google-plus"></i><span> Google+</span></a>
+    </li>
+    <li>
+      <a href="https://news.ycombinator.com/submitlink?u=/articles/2016-10/Find-Kth-Smallest-Element-in-Two-Sorted-Array" class="hacker-news btn" title="Share on Hacker News"><i class="fa fa-hacker-news"></i><span> Hacker News</span></a>
+    </li>
+    <li>
+      <a href="https://www.reddit.com/submit?url=/articles/2016-10/Find-Kth-Smallest-Element-in-Two-Sorted-Array" class="reddit btn" title="Share on Reddit"><i class="fa fa-reddit"></i><span> Reddit</span></a>
+    </li>
+  </ul>
+</div><!-- end share-buttons -->
+
+
+
+        <footer>
+  &copy; 2016 ZHENG ZHOU. Powered by <a href="http://jekyllrb.com/">Jekyll</a>
+</footer>
+
+      </div>
+    </div>
+
+  </div>
+  <script type="text/javascript" src="/js/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="/js/main.js"></script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+<script src="https://d3js.org/d3.v4.min.js"></script>
+
+</script>
+
+
+</body>
+</html>
