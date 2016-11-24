@@ -1,0 +1,161 @@
+<style>
+.plotsamples {
+  font: 10px sans-serif;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.annotation {
+  font: 10px monaco;
+  stroke: black;
+  stroke-width: 0.8px;
+}
+
+.area {
+  fill: lightsteelblue;
+}
+
+.line {
+  fill: none;
+  stroke: steelblue;
+  stroke-width: 1.5px;
+}
+
+.dot {
+  fill: white;
+  stroke-width: 1.5px;
+}
+
+.neg_dot {
+  stroke: steelblue;
+}
+
+.pos_dot{
+  stroke: red;
+}
+
+
+</style>
+<div class="plotsamples"></div>
+<script src="//d3js.org/d3.v4.0.0-alpha.4.min.js"></script>
+<script>
+
+var randomRange = function(min, max){
+  return Math.random() * (max - min) + min
+};
+
+var boundary1 = d3.range(-1,10).map(function(i) {
+  return {x: i / 10, y: (-5/3)*(i/10) + 0.5};
+});
+
+var boundary2 = d3.range(-1,10).map(function(i) {
+  return {x: i / 10, y: (-5/3)*(i/10) + 0.65};
+});
+
+var boundary3 = d3.range(-1,10).map(function(i) {
+  return {x: i / 10, y: (-5/3)*(i/10) + 0.8};
+});
+
+var neg_data = d3.range(40).map(function(i) {
+  var dx = randomRange(0, 0.3)
+  var dy = randomRange(0, (-5/3)*dx + 0.5)
+  if (i == 20){
+    dy = (-5/3)*dx + 0.5
+  }
+  return {x: dx, y: dy}
+});
+
+var pos_data = d3.range(40).map(function(i) {
+  var dx = randomRange(0, 1)
+  var dy = randomRange((-5/3)*dx + 0.8, 1)
+  if (i == 20){
+    dy = (-5/3)*dx + 0.8
+  }
+  return {x: dx, y: dy}
+});
+
+var boundaries = [
+  boundary1,
+  boundary2,
+  boundary3,
+]
+
+var names = ["line1", "line2", "line3"];
+
+var strokes = ["steelblue", "green", "steelblue"];
+
+var margin = {top: 40, right: 40, bottom: 40, left: 40},
+    width = 660 - margin.left - margin.right,
+    height = 500 - margin.top - margin.bottom;
+
+var x = d3.scaleLinear()
+    .range([0, width]);
+
+var y = d3.scaleLinear()
+    .range([height, 0]);
+
+
+var line = d3.line()
+    .defined(function(d) { return d; })
+    .x(function(d) { return x(d.x); })
+    .y(function(d) { return y(d.y); });
+
+
+var svg = d3.select(".plotsamples").append("svg")
+    .datum(boundaries)
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+svg.append("g")
+    .attr("class", "axis axis--x")
+    .attr("transform", "translate(0," + height + ")")
+    .call(d3.axisBottom().scale(x));
+
+svg.append("g")
+    .attr("class", "axis axis--y")
+    .call(d3.axisLeft().scale(y));
+
+
+var lines = svg.selectAll(".line")
+    .data(boundaries)
+    .enter().append("g")
+    .attr("class", "line")
+
+
+lines.append("path")
+    .attr("class", "line-path")
+    .style("stroke", function(d, i){
+      return strokes[i % strokes.length]
+    })
+    .attr("d", line)
+
+lines.append("text")
+    .datum(function(d, i){return {name: names[i], value: d[1]}})
+    .attr("class", "annotation")
+    .attr("transform", function(d) { return "translate(" + x(d.value.x) + "," + y(d.value.y) + ")"; })
+    .attr("x", 1)
+    .text(function(d) { return d.name; });
+
+svg.selectAll(".neg_dot")
+    .data(neg_data)
+    .enter().append("circle")
+    .attr("class", "dot neg_dot")
+    .attr("cx", line.x())
+    .attr("cy", line.y())
+    .attr("r", 2.5);
+
+svg.selectAll(".pos_dot")
+    .data(pos_data)
+    .enter().append("circle")
+    .attr("class", "dot pos_dot")
+    .attr("cx", line.x())
+    .attr("cy", line.y())
+    .attr("r", 2.5);
+</script>
