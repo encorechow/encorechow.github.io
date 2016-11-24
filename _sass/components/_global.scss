@@ -20,7 +20,7 @@ img {
 table,
 th,
 td {
-  border: none;
+  border: 1px solid;
 }
 .table {
   display: table;
@@ -119,4 +119,12 @@ footer {
     padding: 0;
     list-style: none;
   }
+}
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0;
 }
