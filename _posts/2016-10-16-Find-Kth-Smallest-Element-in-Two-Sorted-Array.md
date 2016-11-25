@@ -1,13 +1,12 @@
 ---
 layout: post
 title: Find kth smallest elements in two sorted array
-excerpt: "Preparing for interviews."
+excerpt: "Algorithm coding practice."
 categories: [Algorithms]
 tags: [code, Leetcode, two pointers, binary search]
 comments: true
 image:
   feature: Algorithms-In-Computer-Science.jpg
----
 ---
 
 ### Problem Description
