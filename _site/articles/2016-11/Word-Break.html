@@ -135,7 +135,7 @@ Return true because “leetcode” can be segmented as “leet code”.</em></p>
 <h3 id="brute-force-trivial-solution">Brute Force (Trivial Solution)</h3>
 <p>Naively, This problem can be solved by comparing the words in dictionary with the substring that has same length with each word. By recursively do so, the algorithm will return true if the string can be split by the dictionary, false otherwise.</p>
 
-<h3 id="dynamic-programming">Dynamic Programming</h3>
+<h3 id="dynamic-programming-coding-by-python">Dynamic Programming (Coding by python)</h3>
 
 <p>Subproblem defined as: the substring s(0, i) can be segmented by the dictionary if s(0, i-j) for j = len(word in dictionary) can be segmented by the dictionary as well.</p>
 
@@ -173,7 +173,7 @@ Return true because “leetcode” can be segmented as “leet code”.</em></p>
 <h6 id="time-complexity">Time Complexity</h6>
 <p>Suppose n is the size of string and m is the size of dictionary, above solution has time complexity <script type="math/tex">O(n\times m)</script>;</p>
 
-<h3 id="simpler-and-more-efficient">Simpler and More Efficient</h3>
+<h3 id="simpler-and-more-efficient-coding-by-java">Simpler and More Efficient (Coding by java)</h3>
 
 <p>If the dictionary is extremely large, above dp solution is not efficent enough. Since the dictionary is a set, the time complexity of <strong>contains</strong> operation for set just O(1).</p>
 
