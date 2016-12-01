@@ -123,7 +123,7 @@
       <span class="read-time" title="Estimated read time">
   
   
-    1 min read
+    2 mins read
   
 </span>
 
@@ -138,7 +138,100 @@
 
 <p><a href="http://scikit-learn.org/stable/modules/clustering.html">Sklearn Clustering Algorithm Interface</a></p>
 
-<h4 id="section">1.1.</h4>
+<h4 id="single-linkage-clustering">1.1. Single Linkage Clustering</h4>
+<p>The simplest clustering which has following features:</p>
+
+<ul>
+  <li>consider each object a cluster (n objects).</li>
+  <li>define inter-cluster distance as the distance between the closest two points in the two clusters. (Can be average or farthest two points, they have different name)</li>
+  <li>merge two closest clusters</li>
+  <li>repeat <script type="math/tex">n-k</script> times to make k clusters</li>
+</ul>
+
+<p>This gives us a hierarchical agglomerative tree structure.</p>
+
+<h4 id="soft-clustering">1.2. Soft Clustering</h4>
+
+<p>Instead of finding out which data point belongs to which cluster like k-mean algorithm, in soft clustering, we will try to find out what the probability of a specific data point belongs to some hypothesis (which is the mean of some gaussian).</p>
+
+<p>Assume the data was generate by:</p>
+
+<ol>
+  <li>Select one of K gaussians (with fixed k means and variance) uniformly (So the prior can be ignored)</li>
+  <li>Sample <script type="math/tex">X_i</script> from that gaussian</li>
+  <li>Repeat n times</li>
+</ol>
+
+<p>Task: Find a hypothesis <script type="math/tex">% <![CDATA[
+h = <\mu_1,...,\mu_k> %]]></script> that maximize the probability of the data (Maximum likelihood)</p>
+
+<p>P.S. Hidden variable is the variables that are inferred from other observed variables</p>
+
+<h4 id="expectation-maximization">1.2 Expectation Maximization</h4>
+
+<p><strong>Expectation (define Z from <script type="math/tex">\mu</script> and it is soft clustering, analogy of assigning data to the cluster in K-mean algorithm):</strong></p>
+
+<script type="math/tex; mode=display">\mathbf{E}[Z_{i,j}] = \frac{P(x=x_i|\mu=\mu_j)}{\sum_{i=1}^{k} P(x=x_i|\mu=\mu_j)}</script>
+
+<p><script type="math/tex">Z_{i,j}</script> stands for the probability of observed <script type="math/tex">x_i</script> produced by the gaussian with <script type="math/tex">\mu_j</script></p>
+
+<p>Additionally:</p>
+
+<script type="math/tex; mode=display">P(x=x_i|\mu=\mu_j) = e^{-\frac{1}{2}\sigma^2(x_i-\mu_i)^2}</script>
+
+<p><strong>Maximization (define <script type="math/tex">\mu</script> from Z, analogy of computing mean each iteration in K-mean algorithm)</strong></p>
+
+<script type="math/tex; mode=display">\mu_{j} = \frac{\sum_i \mathbf{E}[Z_{i,j}]x_i}{\sum_{i} \mathbf{E}[Z_{i,j}]}</script>
+
+<p>This can be transformed to K-mean algorithm if cluster assignments use argmax (which ends up with only 0 and 1, 0 stands for not belonging to that class and 1 otherwise).</p>
+
+<p><strong>Properties of EM:</strong></p>
+
+<ul>
+  <li>monotonically non-decreasing likelihood</li>
+  <li>does not converge (practically does)</li>
+  <li>will not diverge</li>
+  <li>can get stuck (can randomly restart)</li>
+  <li>works with any distribution (if E (Bayes net stuff), M (Counting things) solvable)</li>
+</ul>
+
+<h4 id="clustering-properties">1.3. Clustering Properties</h4>
+
+<ul>
+  <li>Richness<br />
+For any assignment of objects to clusters, there is some distance matrix D such that <script type="math/tex">P_D</script> return that clustering <script type="math/tex">\forall \space C \space \exists D P_D=C</script></li>
+  <li>
+    <p>Scale-invariance<br />
+Scaling distance by a positive value does not change the clustering <script type="math/tex">\forall D \space \forall K>0 P_D = P_{KD}</script></p>
+  </li>
+  <li>Consistency<br />
+Shrinking intra-cluster distances and expanding inter-cluster distances does not change the clustering <script type="math/tex">P_D = P_{D^{'}}</script></li>
+</ul>
+
+<p>So what consistency says is if you found that a bunch of things were similar, and a bunch of other things were dissimilar, that if you made the things that were similar more similar, and the things that were not similar less similar, it shouldn’t change your notion which things are similar and which things are not.</p>
+
+<h4 id="impossibility-theorem">1.4. Impossibility Theorem</h4>
+
+<p>No clustering schema can achieve all above three properties. These three properties are mutually contradiction in a sense. (Proven by Kleinberg)</p>
+
+<h4 id="summary">Summary</h4>
+
+<ul>
+  <li>Clustering</li>
+  <li>Connection to compact description</li>
+  <li>Algorithm
+    <ul>
+      <li>K-means</li>
+      <li>SLC (terminates fast)</li>
+      <li>EM (soft clusters)</li>
+    </ul>
+  </li>
+  <li>Clustering properties &amp; impossibility</li>
+</ul>
+
+<p><em>————————————————————————————— Updating… Nov. 30, 2016</em></p>
+
+<h2 id="feature-engineering">2. Feature Engineering</h2>
 
   </article>
 </div>
