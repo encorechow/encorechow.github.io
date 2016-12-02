@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Git Commonly Used Commands, Tricks and Work Flows</title>
+  <meta name="description" content="A note about daily git usage.">
+
+  <!-- CSS files -->
+  <link rel="stylesheet" href="/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/main.css">
+
+  <link rel="canonical" href="/articles/2016-12/Git-Commonly-Used-Commands">
+  <link rel="alternate" type="application/rss+xml" title="Neverland" href=" /feed.xml " />
+
+  <!-- Icons -->
+  <!-- 16x16 -->
+  <link rel="shortcut icon" href="/favicon.ico">
+  <!-- 32x32 -->
+  <link rel="shortcut icon" href="/favicon.png">
+</head>
+
+
+<body>
+  
+  <div class="row">
+    <div class="col s12 m3">
+      <div class="table cover">
+        
+
+<div class="cover-card table-cell table-middle">
+  
+  <img src="/img/avatar.jpg" alt="" class="avatar">
+  
+  <a href="/" class="author_name">ZHENG ZHOU</a>
+  <span class="author_job">Student (Master of Science)</span>
+  <span class="author_bio mbm">I am undating myself...</span>
+  <nav class="nav">
+    <ul class="nav-list">
+         
+      <li class="nav-item">
+        <a href="/archive/">Archive</a>
+        <span>/</span>
+      </li>
+          
+      <li class="nav-item">
+        <a href="/categories/">Categories</a>
+        <span>/</span>
+      </li>
+            
+      <li class="nav-item">
+        <a href="/tags/">Tags</a>
+      </li>
+       
+    </ul>
+  </nav>
+  <div class="social-links">
+  <ul>
+    <li><a href="mailto:encorechow1992@gmail.com" class="social-link-item" target="_blank"><i class="fa fa-fw fa-envelope"></i></a></li>
+    
+    <li><a href="http://facebook.com/axieandyangyang" class="social-link-item" target="_blank"><i class="fa fa-fw fa-facebook"></i></a></li>
+    
+    <li><a href="http://linkedin.com/in/zhou-zheng-378041a5" class="social-link-item" target="_blank"><i class="fa fa-fw fa-linkedin"></i></a></li>
+    
+    
+    
+    <li><a href="http://github.com/encorechow" class="social-link-item" target="_blank"><i class="fa fa-fw fa-github"></i></a></li>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </ul>
+</div>
+
+  <nav class="nav">
+  <ul class="nav-list">
+    <li class="nav-item">
+      <a href="/aboutme/">About Me</a>
+    </li>
+  </ul>
+</nav>
+
+</div>
+
+      </div>
+    </div>
+
+    <div class="col s12 m9">
+      <div class="post-listing">
+        <a class="btn" href= "/" >
+  Home
+</a>
+
+
+<div id="post">
+  <header class="post-header">
+    <h1 title="Git Commonly Used Commands, Tricks and Work Flows">Git Commonly Used Commands, Tricks and Work Flows</h1>
+    <span class="post-meta">
+      <span class="post-date">
+        1 DEC 2016
+      </span>
+      •
+      <span class="read-time" title="Estimated read time">
+  
+  
+    1 min read
+  
+</span>
+
+    </span>
+
+  </header>
+
+  <article class="post-content">
+    <h1 id="git-and-github">Git and Github</h1>
+
+<h2 id="working-with-ssh-urls">Working with SSH URLs</h2>
+
+<p>The Advantages of SSH URLs are super obvious, the trusted computers will no longer needed a password to pull or push. Following will go through how to establish an SSH key for new computer that will be trusted to access the user’s repository.</p>
+
+<h4 id="generate-an-ssh-key">Generate an SSH key</h4>
+
+<ul>
+  <li>
+    <p>Checking for existing SSH keys. Public key usually has extension <em>*.pub</em>.</p>
+
+    <div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>ls -al ~/.ssh
+<span class="c"># Lists the files in your .ssh directory, if they exist</span>
+</code></pre>
+    </div>
+  </li>
+  <li>
+    <p>If there is no any public key pair, generating a new SSH key and adding it to ssh-agent.</p>
+
+    <div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>ssh-keygen -t rsa -b 4096 -C <span class="s2">"your_email@example.com"</span>
+
+Generating public/private rsa key pair.
+Enter a file <span class="k">in </span>which to save the key <span class="o">(</span>/Users/you/.ssh/id_rsa<span class="o">)</span>: <span class="o">[</span>Press enter]
+Enter passphrase <span class="o">(</span>empty <span class="k">for </span>no passphrase<span class="o">)</span>: <span class="o">[</span>Type a passphrase]
+Enter same passphrase again: <span class="o">[</span>Type passphrase again]
+</code></pre>
+    </div>
+    <p>Passphrase is a second layer encryption, which should be set for the sake of security.</p>
+  </li>
+  <li>
+    <p>Adding SSH key to ssh-agent.</p>
+
+    <div class="highlighter-rouge"><pre class="highlight"><code><span class="c"># start the ssh-agent in the background</span>
+<span class="gp">$ </span><span class="nb">eval</span> <span class="s2">"</span><span class="k">$(</span>ssh-agent -s<span class="k">)</span><span class="s2">"</span>
+Agent pid 59566
+<span class="c"># add ssh key to the ssh-agent</span>
+<span class="gp">$ </span>ssh-add ~/.ssh/id_rsa
+</code></pre>
+    </div>
+  </li>
+  <li>
+    <p>Adding a new SSH public key to GitHub account.</p>
+
+    <div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>pbcopy &lt; ~/.ssh/id_rsa.pub
+<span class="c"># Copies the contents of the id_rsa.pub file to your clipboard</span>
+</code></pre>
+    </div>
+
+    <p>follow the steps below to add the key to account:</p>
+
+    <ul>
+      <li>Click Setting</li>
+    </ul>
+
+    <p><img src="/assets/githubpost/userbar-account-settings.png" alt="Setting" /></p>
+
+    <ul>
+      <li>Click <strong>SSH and GPG keys</strong></li>
+    </ul>
+
+    <p><img src="/assets/githubpost/settings-sidebar-ssh-keys.png" alt="Setting" /></p>
+
+    <ul>
+      <li>Click <strong>New SSH key</strong> or <strong>Add SSH key</strong></li>
+    </ul>
+
+    <p><img src="/assets/githubpost/ssh-add-ssh-key.png" alt="Setting" /></p>
+
+    <ul>
+      <li>Paste public key into “Key”</li>
+    </ul>
+
+    <p><img src="/assets/githubpost/ssh-key-paste.png" alt="Setting" /></p>
+
+    <ul>
+      <li>Click <strong>Add SSH Key</strong></li>
+    </ul>
+
+    <p><img src="/assets/githubpost/ssh-add-key.png" alt="Setting" /></p>
+
+    <ul>
+      <li>Confirm</li>
+    </ul>
+
+    <p><img src="/assets/githubpost/sudo_mode_popup.png" alt="Setting" /></p>
+  </li>
+</ul>
+
+  </article>
+</div>
+
+<div class="share-buttons">
+  <h6>Share on: </h6>
+  <ul>
+    <li>
+      <a href="https://twitter.com/intent/tweet?text=/articles/2016-12/Git-Commonly-Used-Commands" class="twitter btn" title="Share on Twitter"><i class="fa fa-twitter"></i><span> Twitter</span></a>
+    </li>
+    <li>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=/articles/2016-12/Git-Commonly-Used-Commands" class="facebook btn" title="Share on Facebook"><i class="fa fa-facebook"></i><span> Facebook</span></a>
+    </li>
+    <li>
+      <a href="https://plus.google.com/share?url=/articles/2016-12/Git-Commonly-Used-Commands" class="google-plus btn" title="Share on Google Plus"><i class="fa fa-google-plus"></i><span> Google+</span></a>
+    </li>
+    <li>
+      <a href="https://news.ycombinator.com/submitlink?u=/articles/2016-12/Git-Commonly-Used-Commands" class="hacker-news btn" title="Share on Hacker News"><i class="fa fa-hacker-news"></i><span> Hacker News</span></a>
+    </li>
+    <li>
+      <a href="https://www.reddit.com/submit?url=/articles/2016-12/Git-Commonly-Used-Commands" class="reddit btn" title="Share on Reddit"><i class="fa fa-reddit"></i><span> Reddit</span></a>
+    </li>
+  </ul>
+</div><!-- end share-buttons -->
+
+
+
+        <footer>
+  &copy; 2016 ZHENG ZHOU. Powered by <a href="http://jekyllrb.com/">Jekyll</a>
+</footer>
+
+      </div>
+    </div>
+
+  </div>
+  <script type="text/javascript" src="/js/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="/js/main.js"></script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+<script src="https://d3js.org/d3.v4.min.js"></script>
+
+</script>
+
+
+</body>
+</html>
