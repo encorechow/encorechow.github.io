@@ -123,7 +123,7 @@
       <span class="read-time" title="Estimated read time">
   
   
-    2 mins read
+    5 mins read
   
 </span>
 
@@ -232,6 +232,101 @@ Shrinking intra-cluster distances and expanding inter-cluster distances does not
 <p><em>————————————————————————————— Updating… Nov. 30, 2016</em></p>
 
 <h2 id="feature-engineering">2. Feature Engineering</h2>
+
+<h4 id="min-max-feature-scaling">2.1. Min-Max Feature Scaling</h4>
+
+<p>Unbalanced features will cause problem, for example, height and weight of an person. The numeric meaning of height and weight is quite off and should never be operated by using plus or somethings. That’s why we need feature scaling to make them somehow in a balanced space. (Ususally between 0 and 1)</p>
+
+<p>Typically, the formula for feature scaling is like:</p>
+
+<script type="math/tex; mode=display">x^{'}=\frac{x-x_{min}}{x_{max}-x_{min}}</script>
+
+<p>But outlier will mess up the rescaling if use this formula.</p>
+
+<h4 id="feature-selection">2.2. Feature Selection</h4>
+
+<ul>
+  <li>Knowledge Discovery
+    <ul>
+      <li>Interpretability</li>
+      <li>Insight</li>
+    </ul>
+  </li>
+  <li>Curse of Dimensionality</li>
+</ul>
+
+<p>Feature Selection can be exponentially hard since their are exponential number of feature subset for a given number of features.</p>
+
+<p>Two potential algorithms that do feature selection: Filtering and Wrapping</p>
+
+<h5 id="filtering">2.2.1. Filtering</h5>
+
+<p>Image feature searching is a black box, we input our features into this black box, and it will output the subset of features that this black box thinks are most important.</p>
+
+<p><img src="\assets\mlnd\filtering.png" alt="" /></p>
+
+<p>The search box can be any feature selection criteria. For example, a Decision Tree, the criteria will be information gain.</p>
+
+<h5 id="wrapping">2.2.2. Wrapping</h5>
+
+<p>In contrast with filtering, wrapping is trying to select a subset of features and train the model inside the box.</p>
+
+<p><img src="\assets\mlnd\wrapping.png" alt="" /></p>
+
+<p>It extremely time consuming. But still, there are a couple of way to avoid such huge time consumption:<br />
+- Forward<br />
+  - try a single feature among all features at first, evaluate and choose the best<br />
+  - pick up more features and repeat until the evaluation result has no significant changes.</p>
+
+<ul>
+  <li>Backward
+    <ul>
+      <li>try full set of features at first and evaluate.</li>
+      <li>gradually reduce features one by one and evaluate. Stop when there is no significant changes.</li>
+    </ul>
+  </li>
+  <li>Randomized Optimization
+    <ul>
+      <li>try the randomized opt algorithms that are available.</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="relevance">2.3. Relevance</h4>
+
+<ul>
+  <li><script type="math/tex">x_i</script> is strongly relevant if removing it degrades the Bayes optimal classifier (B.O.C).</li>
+  <li><script type="math/tex">x_i</script> is weakly relevant if:
+    <ul>
+      <li>not strongly relevant</li>
+      <li><script type="math/tex">\exists</script> subset of features S such that adding <script type="math/tex">x_i</script> to S improves B.O.C.</li>
+    </ul>
+  </li>
+  <li><script type="math/tex">x_i</script> is otherwise irrelevant</li>
+</ul>
+
+<p>Relevance is actually about information.</p>
+
+<h4 id="relevance-vs-usefulness">2.4. Relevance vs Usefulness</h4>
+
+<ul>
+  <li>Relevance measures effect on B.O.C.</li>
+  <li>Usefulness measures effect on a particular prediction.</li>
+</ul>
+
+<p>Usefulness is more about error instead of infomation/model/learner.</p>
+
+<h4 id="summary-1">Summary</h4>
+
+<ol>
+  <li>Feature Selection</li>
+  <li>Filtering (faster but ignore bias) vs Wrapping (slow but useful)</li>
+  <li>Relevance (strong vs weak) vs Usefulness</li>
+</ol>
+
+<p><em>————————————————————————————— Updating… Dec. 2, 2016</em></p>
+
+<h2 id="dimensionality-reduction">3. Dimensionality Reduction</h2>
 
   </article>
 </div>

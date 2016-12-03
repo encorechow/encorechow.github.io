@@ -98,3 +98,81 @@ No clustering schema can achieve all above three properties. These three propert
 *--------------------------------------------------------------------------------------- Updating... Nov. 30, 2016*  
 
 ## 2. Feature Engineering
+
+#### 2.1. Min-Max Feature Scaling
+
+Unbalanced features will cause problem, for example, height and weight of an person. The numeric meaning of height and weight is quite off and should never be operated by using plus or somethings. That's why we need feature scaling to make them somehow in a balanced space. (Ususally between 0 and 1)
+
+Typically, the formula for feature scaling is like:
+
+$$x^{'}=\frac{x-x_{min}}{x_{max}-x_{min}}$$
+
+But outlier will mess up the rescaling if use this formula.
+
+#### 2.2. Feature Selection
+
+- Knowledge Discovery
+  - Interpretability
+  - Insight
+
+- Curse of Dimensionality
+
+Feature Selection can be exponentially hard since their are exponential number of feature subset for a given number of features.
+
+Two potential algorithms that do feature selection: Filtering and Wrapping
+
+##### 2.2.1. Filtering
+
+Image feature searching is a black box, we input our features into this black box, and it will output the subset of features that this black box thinks are most important.
+
+
+![]({{ site.url }}\assets\mlnd\filtering.png)
+
+The search box can be any feature selection criteria. For example, a Decision Tree, the criteria will be information gain.
+
+##### 2.2.2. Wrapping
+
+In contrast with filtering, wrapping is trying to select a subset of features and train the model inside the box.
+
+![]({{ site.url }}\assets\mlnd\wrapping.png)
+
+It extremely time consuming. But still, there are a couple of way to avoid such huge time consumption:  
+- Forward  
+  - try a single feature among all features at first, evaluate and choose the best  
+  - pick up more features and repeat until the evaluation result has no significant changes.  
+
+- Backward  
+  - try full set of features at first and evaluate.  
+  - gradually reduce features one by one and evaluate. Stop when there is no significant changes.  
+
+- Randomized Optimization  
+  - try the randomized opt algorithms that are available.
+
+#### 2.3. Relevance
+
+- $$x_i$$ is strongly relevant if removing it degrades the Bayes optimal classifier (B.O.C).  
+- $$x_i$$ is weakly relevant if:  
+  - not strongly relevant  
+  - $$\exists$$ subset of features S such that adding $$x_i$$ to S improves B.O.C.  
+- $$x_i$$ is otherwise irrelevant  
+
+Relevance is actually about information.  
+
+#### 2.4. Relevance vs Usefulness
+
+- Relevance measures effect on B.O.C.  
+- Usefulness measures effect on a particular prediction.  
+
+Usefulness is more about error instead of infomation/model/learner.  
+
+
+#### Summary
+
+1. Feature Selection  
+2. Filtering (faster but ignore bias) vs Wrapping (slow but useful)  
+3. Relevance (strong vs weak) vs Usefulness
+
+
+*--------------------------------------------------------------------------------------- Updating... Dec. 2, 2016*  
+
+## 3. Dimensionality Reduction
