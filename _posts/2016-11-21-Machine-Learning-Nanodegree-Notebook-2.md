@@ -184,6 +184,7 @@ Basically when the problem has a large number of features, PCA will be applied t
 PCA projects the data into a space that has lower dimensions.  
 
 Two definition of variance:  
+
   - The willingness / flexibility of an algorithm to learn. (for model)  
   - technical term in statistics -- roughly the "spread" of a data distribution (similar to standard deviation)  
 
