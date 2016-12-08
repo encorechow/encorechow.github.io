@@ -74,5 +74,14 @@ The Advantages of SSH URLs are super obvious, the trusted computers will no long
   ![Setting]({{ site.url }}/assets/githubpost/ssh-add-key.png)
 
   - Confirm
-  
+
   ![Setting]({{ site.url }}/assets/githubpost/sudo_mode_popup.png)
+
+
+## Some Git tricks
+
+**Only stage modified files:**  
+
+```bash  
+$ git add -u
+```

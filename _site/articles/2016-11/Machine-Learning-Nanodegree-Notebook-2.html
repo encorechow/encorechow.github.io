@@ -12,6 +12,7 @@
   <!-- CSS files -->
   <link rel="stylesheet" href="/css/font-awesome.min.css">
   <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/styles/default.min.css">
 
   <link rel="canonical" href="/articles/2016-11/Machine-Learning-Nanodegree-Notebook-2">
   <link rel="alternate" type="application/rss+xml" title="Neverland" href=" /feed.xml " />
@@ -123,7 +124,7 @@
       <span class="read-time" title="Estimated read time">
   
   
-    5 mins read
+    6 mins read
   
 </span>
 
@@ -328,6 +329,41 @@ Shrinking intra-cluster distances and expanding inter-cluster distances does not
 
 <h2 id="dimensionality-reduction">3. Dimensionality Reduction</h2>
 
+<h4 id="principle-component-analysis">3.1. Principle Component Analysis</h4>
+
+<p>Basically when the problem has a large number of features, PCA will be applied to make a composite feature that more directly probes the underlying phenomenon of the problem. It also a very powerful standalone method in its own right for unsupervised learning.</p>
+
+<p>PCA projects the data into a space that has lower dimensions.</p>
+
+<p>Two definition of variance:<br />
+  - The willingness / flexibility of an algorithm to learn. (for model)<br />
+  - technical term in statistics – roughly the “spread” of a data distribution (similar to standard deviation)</p>
+
+<p>What PCA do is trying to find a principle component that maximize the variance of data. By this way, the informations of original data are maximized.</p>
+
+<p>Furthermore, PCA essentially derives the latent variables from original variables. Things like square footage and number of rooms of a house actually can be expressed just using the size of the house.</p>
+
+<p><strong>Maximal Variance and Information Loss:</strong></p>
+
+<p>Information Loss when mapping the original data onto principle component is actually the distance of projection of that data point. So in effect, the projection onto direction of maximal variance minimizes distance (information loss).</p>
+
+<p>The goal of PCA is always minimizes the information loss from the space of high dimensions.</p>
+
+<p><strong>When to use PCA</strong></p>
+
+<ul>
+  <li>Latent feature driving the pattern in data.</li>
+  <li>Dimensionality Reduction.
+    <ul>
+      <li>visualize high dimensional data</li>
+      <li>reduce noise</li>
+      <li>make other algorithms work better. (eigenfaces)</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="feature-transformation">3.2. Feature Transformation</h4>
+
   </article>
 </div>
 
@@ -366,6 +402,8 @@ Shrinking intra-cluster distances and expanding inter-cluster distances does not
 <script type="text/javascript" src="/js/main.js"></script>
 <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
 <script src="https://d3js.org/d3.v4.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
 
 </script>
 

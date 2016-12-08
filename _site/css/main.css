@@ -1586,7 +1586,7 @@ ul.tag-cloud {
     margin: 1em auto; }
 
 .post-listing {
-  background-color: #fff;
+  background-color: #fcf8f2;
   position: absolute;
   top: 400px;
   z-index: 233;
