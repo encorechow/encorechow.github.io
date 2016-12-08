@@ -176,3 +176,33 @@ Usefulness is more about error instead of infomation/model/learner.
 *--------------------------------------------------------------------------------------- Updating... Dec. 2, 2016*  
 
 ## 3. Dimensionality Reduction
+
+#### 3.1. Principle Component Analysis
+
+Basically when the problem has a large number of features, PCA will be applied to make a composite feature that more directly probes the underlying phenomenon of the problem. It also a very powerful standalone method in its own right for unsupervised learning.  
+
+PCA projects the data into a space that has lower dimensions.  
+
+Two definition of variance:  
+  - The willingness / flexibility of an algorithm to learn. (for model)  
+  - technical term in statistics -- roughly the "spread" of a data distribution (similar to standard deviation)  
+
+What PCA do is trying to find a principle component that maximize the variance of data. By this way, the informations of original data are maximized.  
+
+Furthermore, PCA essentially derives the latent variables from original variables. Things like square footage and number of rooms of a house actually can be expressed just using the size of the house.  
+
+**Maximal Variance and Information Loss:**  
+
+Information Loss when mapping the original data onto principle component is actually the distance of projection of that data point. So in effect, the projection onto direction of maximal variance minimizes distance (information loss).
+
+The goal of PCA is always minimizes the information loss from the space of high dimensions.
+
+**When to use PCA**
+
+- Latent feature driving the pattern in data.  
+- Dimensionality Reduction.  
+  - visualize high dimensional data  
+  - reduce noise  
+  - make other algorithms work better. (eigenfaces)
+
+#### 3.2. Feature Transformation
