@@ -16,7 +16,7 @@ image:
 
 [Sklearn Clustering Algorithm Interface](http://scikit-learn.org/stable/modules/clustering.html)
 
-#### 1.1. Single Linkage Clustering
+### 1.1. Single Linkage Clustering
 The simplest clustering which has following features:
 
   - consider each object a cluster (n objects).  
@@ -26,7 +26,7 @@ The simplest clustering which has following features:
 
 This gives us a hierarchical agglomerative tree structure.
 
-#### 1.2. Soft Clustering
+### 1.2. Soft Clustering
 
 Instead of finding out which data point belongs to which cluster like k-mean algorithm, in soft clustering, we will try to find out what the probability of a specific data point belongs to some hypothesis (which is the mean of some gaussian).
 
@@ -40,7 +40,7 @@ Task: Find a hypothesis $$h = <\mu_1,...,\mu_k>$$ that maximize the probability 
 
 P.S. Hidden variable is the variables that are inferred from other observed variables
 
-#### 1.2 Expectation Maximization
+### 1.2. Expectation Maximization
 
 **Expectation (define Z from $$\mu$$ and it is soft clustering, analogy of assigning data to the cluster in K-mean algorithm):**  
 
@@ -68,7 +68,7 @@ This can be transformed to K-mean algorithm if cluster assignments use argmax (w
 - can get stuck (can randomly restart)
 - works with any distribution (if E (Bayes net stuff), M (Counting things) solvable)
 
-#### 1.3. Clustering Properties
+### 1.3. Clustering Properties
 
 - Richness  
   For any assignment of objects to clusters, there is some distance matrix D such that $$P_D$$ return that clustering $$\forall \space C \space \exists D P_D=C$$  
@@ -80,11 +80,11 @@ This can be transformed to K-mean algorithm if cluster assignments use argmax (w
 
 So what consistency says is if you found that a bunch of things were similar, and a bunch of other things were dissimilar, that if you made the things that were similar more similar, and the things that were not similar less similar, it shouldn't change your notion which things are similar and which things are not.
 
-#### 1.4. Impossibility Theorem
+### 1.4. Impossibility Theorem
 
 No clustering schema can achieve all above three properties. These three properties are mutually contradiction in a sense. (Proven by Kleinberg)
 
-#### Summary
+### Summary
 
 - Clustering  
 - Connection to compact description  
@@ -99,7 +99,7 @@ No clustering schema can achieve all above three properties. These three propert
 
 ## 2. Feature Engineering
 
-#### 2.1. Min-Max Feature Scaling
+### 2.1. Min-Max Feature Scaling
 
 Unbalanced features will cause problem, for example, height and weight of an person. The numeric meaning of height and weight is quite off and should never be operated by using plus or somethings. That's why we need feature scaling to make them somehow in a balanced space. (Ususally between 0 and 1)
 
@@ -109,7 +109,7 @@ $$x^{'}=\frac{x-x_{min}}{x_{max}-x_{min}}$$
 
 But outlier will mess up the rescaling if use this formula.
 
-#### 2.2. Feature Selection
+### 2.2. Feature Selection
 
 - Knowledge Discovery
   - Interpretability
@@ -121,7 +121,7 @@ Feature Selection can be exponentially hard since their are exponential number o
 
 Two potential algorithms that do feature selection: Filtering and Wrapping
 
-##### 2.2.1. Filtering
+#### 2.2.1. Filtering
 
 Image feature searching is a black box, we input our features into this black box, and it will output the subset of features that this black box thinks are most important.
 
@@ -130,7 +130,7 @@ Image feature searching is a black box, we input our features into this black bo
 
 The search box can be any feature selection criteria. For example, a Decision Tree, the criteria will be information gain.
 
-##### 2.2.2. Wrapping
+#### 2.2.2. Wrapping
 
 In contrast with filtering, wrapping is trying to select a subset of features and train the model inside the box.
 
@@ -148,7 +148,7 @@ It extremely time consuming. But still, there are a couple of way to avoid such 
 - Randomized Optimization  
   - try the randomized opt algorithms that are available.
 
-#### 2.3. Relevance
+### 2.3. Relevance
 
 - $$x_i$$ is strongly relevant if removing it degrades the Bayes optimal classifier (B.O.C).  
 - $$x_i$$ is weakly relevant if:  
@@ -158,7 +158,7 @@ It extremely time consuming. But still, there are a couple of way to avoid such 
 
 Relevance is actually about information.  
 
-#### 2.4. Relevance vs Usefulness
+### 2.4. Relevance vs Usefulness
 
 - Relevance measures effect on B.O.C.  
 - Usefulness measures effect on a particular prediction.  
@@ -166,7 +166,7 @@ Relevance is actually about information.
 Usefulness is more about error instead of infomation/model/learner.  
 
 
-#### Summary
+### Summary
 
 1. Feature Selection  
 2. Filtering (faster but ignore bias) vs Wrapping (slow but useful)  
@@ -177,7 +177,23 @@ Usefulness is more about error instead of infomation/model/learner.
 
 ## 3. Dimensionality Reduction
 
-#### 3.1. Principle Component Analysis
+### 3.1. Feature Transformation
+
+Definition of **Feature Transformation:** As opposed to feature selection, feature transformation is about doing some kind of pre-processing on a set of features, in order to create a new set of features (smaller or compact). When creating these set of features, the information should be explicitly retained as much as possible.
+
+$$x -> F^N -> F^U$$
+
+New feature set is just a linear combination of original feature by applying some transformation.
+
+Feature selection is in fact a subset of feature transformation while feature selection just purely chooses a subset of the features.
+
+Example problem: Information retrieval (like search on google)  
+
+  - A word has different meanings. (polysemy)
+  - Many words have similar meanings. (synonomy)
+
+
+#### 3.1.2. Principle Component Analysis (PCA)
 
 Basically when the problem has a large number of features, PCA will be applied to make a composite feature that more directly probes the underlying phenomenon of the problem. It also a very powerful standalone method in its own right for unsupervised learning.  
 
@@ -206,4 +222,54 @@ The goal of PCA is always minimizes the information loss from the space of high 
   - reduce noise  
   - make other algorithms work better. (eigenfaces)
 
-#### 3.2. Feature Transformation
+
+#### 3.1.3. Independent Components Analysis (ICA)
+
+- PCA is about finding correlation, which maximize variance. ==> reconstruction  
+- ICA is trying to maximize **Independence**. It tries to find a linear transformation of feature space into a new feature space such that each of the individual new features are mutually independent.
+
+What ICA finally achieve, is that mutual information of each pair of new features $$I(y_i,y_j) = 0$$, and mutual information of all original features and new features $$I(Y, X)$$ is as high as possible.
+
+One example: [Cocktail Party Problem](http://research.ics.aalto.fi/ica/cocktail/cocktail_en.cgi)
+
+In this example, all microphones are the observables. These observables combine a mix of a bunch of sound sources. The sound sources are exactly hidden variable. By given these observable microphones, ICA will separate the sound sources from them such that the mutual information of the sound sources is 0 and the mutual information between sound sources and microphones is as high as possible.
+
+
+### 3.2. PCA vs ICA  
+
+- Mutual orthogonal (PCA)
+- Mutual independence (ICA)
+- Maximal variance (PCA, actually finding orthogonal gaussian since gaussian has high variance)
+- Maximal mutual information (ICA)
+- Ordered features (PCA)
+- Bag of features (ICA)
+
+Examples of how PCA and ICA differ:
+
+  1. **Blind Source Separation Problem**  
+  - ICA well separate the sources  
+  - PCA does a terrible job on it since PCA just transform the mix of sources into another mix of sources.  
+
+  2. **Directional**  
+  - It doesn't matter if the input features are a matrix or a transpose of matrix for PCA. It ends up with finding same answer.  
+  - ICA has direction for the input features, highly directional.  
+
+  3. **Face images**  
+  - The first component of PCA for images will be brightness of the images. That's not actually helpful. So typically people always normalize all of the images on brightness. The second component of PCA will be average faces on this problem (eigenfaces). It's helpful for reconstructing. PCA is kind of doing global orthogonality things on original features so that it is forced to finding global features over all original features.  
+  - The ICA is trying to find the nose, the eyes, the mouse, the hair in the images, which are mutual independent. It does not care about orthogonality.  
+
+  4. **Natural Scenes**  
+  - ICA finds edges in natural scenes.  
+
+  5. **Documents**  
+  - ICA gives topics in given documents.  
+
+Overall, ICA allows to do analysis over the data to discover fundamental features of them, like edges, topics, etc. PCA tends to find the global features over the data.
+
+
+### 3.3. Alternatives
+
+- RCA = Random Components Analysis (generates random directions. It manages to work! and cheaper and easier than PCA)  
+- LDA = Linear Discriminant Analysis (finds a projection that discriminates based on the label, more like supervised learning)
+
+*--------------------------------------------------------------------------------------- Updating... Dec. 9, 2016*

@@ -12,7 +12,8 @@
   <!-- CSS files -->
   <link rel="stylesheet" href="/css/font-awesome.min.css">
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/styles/default.min.css">
+  <link rel="stylesheet" href="/css/tomorrow-night-bright.css">
+
 
   <link rel="canonical" href="/articles/2016-11/Machine-Learning-Nanodegree-Notebook-2">
   <link rel="alternate" type="application/rss+xml" title="Neverland" href=" /feed.xml " />
@@ -124,7 +125,7 @@
       <span class="read-time" title="Estimated read time">
   
   
-    6 mins read
+    9 mins read
   
 </span>
 
@@ -139,7 +140,7 @@
 
 <p><a href="http://scikit-learn.org/stable/modules/clustering.html">Sklearn Clustering Algorithm Interface</a></p>
 
-<h4 id="single-linkage-clustering">1.1. Single Linkage Clustering</h4>
+<h3 id="single-linkage-clustering">1.1. Single Linkage Clustering</h3>
 <p>The simplest clustering which has following features:</p>
 
 <ul>
@@ -151,7 +152,7 @@
 
 <p>This gives us a hierarchical agglomerative tree structure.</p>
 
-<h4 id="soft-clustering">1.2. Soft Clustering</h4>
+<h3 id="soft-clustering">1.2. Soft Clustering</h3>
 
 <p>Instead of finding out which data point belongs to which cluster like k-mean algorithm, in soft clustering, we will try to find out what the probability of a specific data point belongs to some hypothesis (which is the mean of some gaussian).</p>
 
@@ -168,7 +169,7 @@ h = <\mu_1,...,\mu_k> %]]></script> that maximize the probability of the data (M
 
 <p>P.S. Hidden variable is the variables that are inferred from other observed variables</p>
 
-<h4 id="expectation-maximization">1.2 Expectation Maximization</h4>
+<h3 id="expectation-maximization">1.2. Expectation Maximization</h3>
 
 <p><strong>Expectation (define Z from <script type="math/tex">\mu</script> and it is soft clustering, analogy of assigning data to the cluster in K-mean algorithm):</strong></p>
 
@@ -196,7 +197,7 @@ h = <\mu_1,...,\mu_k> %]]></script> that maximize the probability of the data (M
   <li>works with any distribution (if E (Bayes net stuff), M (Counting things) solvable)</li>
 </ul>
 
-<h4 id="clustering-properties">1.3. Clustering Properties</h4>
+<h3 id="clustering-properties">1.3. Clustering Properties</h3>
 
 <ul>
   <li>Richness<br />
@@ -211,11 +212,11 @@ Shrinking intra-cluster distances and expanding inter-cluster distances does not
 
 <p>So what consistency says is if you found that a bunch of things were similar, and a bunch of other things were dissimilar, that if you made the things that were similar more similar, and the things that were not similar less similar, it shouldn’t change your notion which things are similar and which things are not.</p>
 
-<h4 id="impossibility-theorem">1.4. Impossibility Theorem</h4>
+<h3 id="impossibility-theorem">1.4. Impossibility Theorem</h3>
 
 <p>No clustering schema can achieve all above three properties. These three properties are mutually contradiction in a sense. (Proven by Kleinberg)</p>
 
-<h4 id="summary">Summary</h4>
+<h3 id="summary">Summary</h3>
 
 <ul>
   <li>Clustering</li>
@@ -234,7 +235,7 @@ Shrinking intra-cluster distances and expanding inter-cluster distances does not
 
 <h2 id="feature-engineering">2. Feature Engineering</h2>
 
-<h4 id="min-max-feature-scaling">2.1. Min-Max Feature Scaling</h4>
+<h3 id="min-max-feature-scaling">2.1. Min-Max Feature Scaling</h3>
 
 <p>Unbalanced features will cause problem, for example, height and weight of an person. The numeric meaning of height and weight is quite off and should never be operated by using plus or somethings. That’s why we need feature scaling to make them somehow in a balanced space. (Ususally between 0 and 1)</p>
 
@@ -244,7 +245,7 @@ Shrinking intra-cluster distances and expanding inter-cluster distances does not
 
 <p>But outlier will mess up the rescaling if use this formula.</p>
 
-<h4 id="feature-selection">2.2. Feature Selection</h4>
+<h3 id="feature-selection">2.2. Feature Selection</h3>
 
 <ul>
   <li>Knowledge Discovery
@@ -260,7 +261,7 @@ Shrinking intra-cluster distances and expanding inter-cluster distances does not
 
 <p>Two potential algorithms that do feature selection: Filtering and Wrapping</p>
 
-<h5 id="filtering">2.2.1. Filtering</h5>
+<h4 id="filtering">2.2.1. Filtering</h4>
 
 <p>Image feature searching is a black box, we input our features into this black box, and it will output the subset of features that this black box thinks are most important.</p>
 
@@ -268,7 +269,7 @@ Shrinking intra-cluster distances and expanding inter-cluster distances does not
 
 <p>The search box can be any feature selection criteria. For example, a Decision Tree, the criteria will be information gain.</p>
 
-<h5 id="wrapping">2.2.2. Wrapping</h5>
+<h4 id="wrapping">2.2.2. Wrapping</h4>
 
 <p>In contrast with filtering, wrapping is trying to select a subset of features and train the model inside the box.</p>
 
@@ -293,7 +294,7 @@ Shrinking intra-cluster distances and expanding inter-cluster distances does not
   </li>
 </ul>
 
-<h4 id="relevance">2.3. Relevance</h4>
+<h3 id="relevance">2.3. Relevance</h3>
 
 <ul>
   <li><script type="math/tex">x_i</script> is strongly relevant if removing it degrades the Bayes optimal classifier (B.O.C).</li>
@@ -308,7 +309,7 @@ Shrinking intra-cluster distances and expanding inter-cluster distances does not
 
 <p>Relevance is actually about information.</p>
 
-<h4 id="relevance-vs-usefulness">2.4. Relevance vs Usefulness</h4>
+<h3 id="relevance-vs-usefulness">2.4. Relevance vs Usefulness</h3>
 
 <ul>
   <li>Relevance measures effect on B.O.C.</li>
@@ -317,7 +318,7 @@ Shrinking intra-cluster distances and expanding inter-cluster distances does not
 
 <p>Usefulness is more about error instead of infomation/model/learner.</p>
 
-<h4 id="summary-1">Summary</h4>
+<h3 id="summary-1">Summary</h3>
 
 <ol>
   <li>Feature Selection</li>
@@ -329,7 +330,24 @@ Shrinking intra-cluster distances and expanding inter-cluster distances does not
 
 <h2 id="dimensionality-reduction">3. Dimensionality Reduction</h2>
 
-<h4 id="principle-component-analysis">3.1. Principle Component Analysis</h4>
+<h3 id="feature-transformation">3.1. Feature Transformation</h3>
+
+<p>Definition of <strong>Feature Transformation:</strong> As opposed to feature selection, feature transformation is about doing some kind of pre-processing on a set of features, in order to create a new set of features (smaller or compact). When creating these set of features, the information should be explicitly retained as much as possible.</p>
+
+<script type="math/tex; mode=display">x -> F^N -> F^U</script>
+
+<p>New feature set is just a linear combination of original feature by applying some transformation.</p>
+
+<p>Feature selection is in fact a subset of feature transformation while feature selection just purely chooses a subset of the features.</p>
+
+<p>Example problem: Information retrieval (like search on google)</p>
+
+<ul>
+  <li>A word has different meanings. (polysemy)</li>
+  <li>Many words have similar meanings. (synonomy)</li>
+</ul>
+
+<h4 id="principle-component-analysis-pca">3.1.2. Principle Component Analysis (PCA)</h4>
 
 <p>Basically when the problem has a large number of features, PCA will be applied to make a composite feature that more directly probes the underlying phenomenon of the problem. It also a very powerful standalone method in its own right for unsupervised learning.</p>
 
@@ -365,7 +383,73 @@ Shrinking intra-cluster distances and expanding inter-cluster distances does not
   </li>
 </ul>
 
-<h4 id="feature-transformation">3.2. Feature Transformation</h4>
+<h4 id="independent-components-analysis-ica">3.1.3. Independent Components Analysis (ICA)</h4>
+
+<ul>
+  <li>PCA is about finding correlation, which maximize variance. ==&gt; reconstruction</li>
+  <li>ICA is trying to maximize <strong>Independence</strong>. It tries to find a linear transformation of feature space into a new feature space such that each of the individual new features are mutually independent.</li>
+</ul>
+
+<p>What ICA finally achieve, is that mutual information of each pair of new features <script type="math/tex">I(y_i,y_j) = 0</script>, and mutual information of all original features and new features <script type="math/tex">I(Y, X)</script> is as high as possible.</p>
+
+<p>One example: <a href="http://research.ics.aalto.fi/ica/cocktail/cocktail_en.cgi">Cocktail Party Problem</a></p>
+
+<p>In this example, all microphones are the observables. These observables combine a mix of a bunch of sound sources. The sound sources are exactly hidden variable. By given these observable microphones, ICA will separate the sound sources from them such that the mutual information of the sound sources is 0 and the mutual information between sound sources and microphones is as high as possible.</p>
+
+<h3 id="pca-vs-ica">3.2. PCA vs ICA</h3>
+
+<ul>
+  <li>Mutual orthogonal (PCA)</li>
+  <li>Mutual independence (ICA)</li>
+  <li>Maximal variance (PCA, actually finding orthogonal gaussian since gaussian has high variance)</li>
+  <li>Maximal mutual information (ICA)</li>
+  <li>Ordered features (PCA)</li>
+  <li>Bag of features (ICA)</li>
+</ul>
+
+<p>Examples of how PCA and ICA differ:</p>
+
+<ol>
+  <li><strong>Blind Source Separation Problem</strong>
+    <ul>
+      <li>ICA well separate the sources</li>
+      <li>PCA does a terrible job on it since PCA just transform the mix of sources into another mix of sources.</li>
+    </ul>
+  </li>
+  <li><strong>Directional</strong>
+    <ul>
+      <li>It doesn’t matter if the input features are a matrix or a transpose of matrix for PCA. It ends up with finding same answer.</li>
+      <li>ICA has direction for the input features, highly directional.</li>
+    </ul>
+  </li>
+  <li><strong>Face images</strong>
+    <ul>
+      <li>The first component of PCA for images will be brightness of the images. That’s not actually helpful. So typically people always normalize all of the images on brightness. The second component of PCA will be average faces on this problem (eigenfaces). It’s helpful for reconstructing. PCA is kind of doing global orthogonality things on original features so that it is forced to finding global features over all original features.</li>
+      <li>The ICA is trying to find the nose, the eyes, the mouse, the hair in the images, which are mutual independent. It does not care about orthogonality.</li>
+    </ul>
+  </li>
+  <li><strong>Natural Scenes</strong>
+    <ul>
+      <li>ICA finds edges in natural scenes.</li>
+    </ul>
+  </li>
+  <li><strong>Documents</strong>
+    <ul>
+      <li>ICA gives topics in given documents.</li>
+    </ul>
+  </li>
+</ol>
+
+<p>Overall, ICA allows to do analysis over the data to discover fundamental features of them, like edges, topics, etc. PCA tends to find the global features over the data.</p>
+
+<h3 id="alternatives">3.3. Alternatives</h3>
+
+<ul>
+  <li>RCA = Random Components Analysis (generates random directions. It manages to work! and cheaper and easier than PCA)</li>
+  <li>LDA = Linear Discriminant Analysis (finds a projection that discriminates based on the label, more like supervised learning)</li>
+</ul>
+
+<p><em>————————————————————————————— Updating… Dec. 9, 2016</em></p>
 
   </article>
 </div>

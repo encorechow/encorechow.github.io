@@ -23,6 +23,7 @@ Naively, This problem can be solved by comparing the words in dictionary with th
 Subproblem defined as: the substring s(0, i) can be segmented by the dictionary if s(0, i-j) for j = len(word in dictionary) can be segmented by the dictionary as well.
 
 Recurrence relation:  
+
 - Define an array dp[i] = true if s(0, i-1) can be segmented by dictionary, false otherwise.
 - dp[i] = (dp[i-j]) & (s(i-j, i) == word(j)) for j = len(word in dictionary)
 - dp[0] = true as base case.
@@ -61,7 +62,8 @@ Suppose n is the size of string and m is the size of dictionary, above solution 
 
 If the dictionary is extremely large, above dp solution is not efficent enough. Since the dictionary is a set, the time complexity of **contains** operation for set just O(1).  
 
-Unlike above solution that exhaustively go through the dictionary, this algorithm maintain a flags array. flags[j] = true if and only if the dictionary contains substring s(i,j) & flag[i-1] = true **(the substring before the character that will be checked should also be able to segmented)** for 0 <= j < len(s).
+Unlike above solution that exhaustively go through the dictionary, this algorithm maintain a flags array. flags[j] = true if and only if the dictionary contains substring s(i,j) & flag[i-1] = true **(the substring before the character that will be checked should also be able to segmented)** for 0 <= j < len(s).  
+
 
 ```java
 public class Solution {
@@ -92,5 +94,6 @@ public class Solution {
 }
 ```
 
-###### Time Complexity
+
+###### Time Complexity  
 Suppose n is the size of string and m is the size of dictionary, above solution has time complexity $$O(n^2)$$;
