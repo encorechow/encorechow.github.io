@@ -53,9 +53,10 @@ Mean, Median, Mode describe the center of the distributions, so they are measure
 
 ##### 1.2.1. Range
 
-Inter-quantile range: First split the data into two halves, then calculate the median of the upper half and lower half respectively. Let's say the upper median is Q1, the lower median is Q3, and the median of data set is Q2. Inter-quantile is the range between Q1 to Q3 (IQR). IQR has the properties that
-1. About 50% of the data falls within it;
-2. The IQR is not affected by outliers.
+Inter-quantile range: First split the data into two halves, then calculate the median of the upper half and lower half respectively. Let's say the upper median is Q1, the lower median is Q3, and the median of data set is Q2. Inter-quantile is the range between Q1 to Q3 (IQR). IQR has the properties that  
+
+1. About 50% of the data falls within it;  
+2. The IQR is not affected by outliers.  
 
 ##### 1.2.2. Outlier
 
@@ -143,6 +144,7 @@ X^TXW \approx X^TY \space \text{(X^TX will have an inverse)}\\
 (X^TX)^{-1}X^TXW \approx (X^TX)^{-1}X^TY \\
 W \approx (X^TX)^{-1}X^TY
 $$
+
 That gives us the exact coefficient that we need to do the polynomial regression.
 
 

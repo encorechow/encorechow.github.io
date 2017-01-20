@@ -85,3 +85,9 @@ The Advantages of SSH URLs are super obvious, the trusted computers will no long
 ```bash  
 $ git add -u
 ```
+
+**Ignore modified files**  
+
+```bash  
+$ git update-index --assume-unchanged file
+```
