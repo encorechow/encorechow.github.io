@@ -10,20 +10,18 @@ comments: true
 ### Problem Description
 > Given a string, find the length of the longest substring without repeating characters.
 
-*Example:
-Given "abcabcbb", the answer is "abc", which the length is 3.
-
-Given "bbbbb", the answer is "b", with the length of 1.
-
+*Example:  
+Given "abcabcbb", the answer is "abc", which the length is 3.  
+Given "bbbbb", the answer is "b", with the length of 1.  
 Given "pwwkew", the answer is "wke", with the length of 3. Note that the answer must be a substring, "pwke" is a subsequence and not a substring.*
 
 
 ### Sliding Window
 
 Key points of algorithm:  
-- use unordered_map to store if character has appeared;
-- if character has appeared twice, set the characters before the first occurrence of repeated character to false (not appeared);
-- update maximum length and move the pointer forward.
+- use unordered_map to store if character has appeared;  
+- if character has appeared twice, set the characters before the first occurrence of repeated character to false (not appeared);  
+- update maximum length and move the pointer forward.  
 
 ```c++
 class Solution {
@@ -71,7 +69,7 @@ public:
         unordered_map<char, int> umap;
 
         for (int p1 = 0, p2 = 0; p1 < s.length(); p1++){
-            
+
             if (umap.find(s[p1]) != umap.end()){
                 p2 = max(umap[s[p1]], p2);
             }

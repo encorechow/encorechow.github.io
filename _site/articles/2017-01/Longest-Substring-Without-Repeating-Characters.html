@@ -129,18 +129,16 @@
   <p>Given a string, find the length of the longest substring without repeating characters.</p>
 </blockquote>
 
-<p>*Example:
-Given “abcabcbb”, the answer is “abc”, which the length is 3.</p>
-
-<p>Given “bbbbb”, the answer is “b”, with the length of 1.</p>
-
-<p>Given “pwwkew”, the answer is “wke”, with the length of 3. Note that the answer must be a substring, “pwke” is a subsequence and not a substring.*</p>
+<p><em>Example:<br />
+Given “abcabcbb”, the answer is “abc”, which the length is 3.<br />
+Given “bbbbb”, the answer is “b”, with the length of 1.<br />
+Given “pwwkew”, the answer is “wke”, with the length of 3. Note that the answer must be a substring, “pwke” is a subsequence and not a substring.</em></p>
 
 <h3 id="sliding-window">Sliding Window</h3>
 
 <p>Key points of algorithm:<br />
-- use unordered_map to store if character has appeared;
-- if character has appeared twice, set the characters before the first occurrence of repeated character to false (not appeared);
+- use unordered_map to store if character has appeared;<br />
+- if character has appeared twice, set the characters before the first occurrence of repeated character to false (not appeared);<br />
 - update maximum length and move the pointer forward.</p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
@@ -188,7 +186,7 @@ Given “abcabcbb”, the answer is “abc”, which the length is 3.</p>
         <span class="n">unordered_map</span><span class="o">&lt;</span><span class="kt">char</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;</span> <span class="n">umap</span><span class="p">;</span>
 
         <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">p1</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">p2</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">p1</span> <span class="o">&lt;</span> <span class="n">s</span><span class="p">.</span><span class="n">length</span><span class="p">();</span> <span class="n">p1</span><span class="o">++</span><span class="p">){</span>
-            
+
             <span class="k">if</span> <span class="p">(</span><span class="n">umap</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">p1</span><span class="p">])</span> <span class="o">!=</span> <span class="n">umap</span><span class="p">.</span><span class="n">end</span><span class="p">()){</span>
                 <span class="n">p2</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">umap</span><span class="p">[</span><span class="n">s</span><span class="p">[</span><span class="n">p1</span><span class="p">]],</span> <span class="n">p2</span><span class="p">);</span>
             <span class="p">}</span>
