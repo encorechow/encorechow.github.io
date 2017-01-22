@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Longest Substring Without Repeating Characters</title>
+  <meta name="description" content="Algorithm coding practice. (Online judge passed)">
+
+  <!-- CSS files -->
+  <link rel="stylesheet" href="/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/tomorrow-night-bright.css">
+
+
+  <link rel="canonical" href="/articles/2017-01/Longest-Substring-Without-Repeating-Characters">
+  <link rel="alternate" type="application/rss+xml" title="Neverland" href=" /feed.xml " />
+
+  <!-- Icons -->
+  <!-- 16x16 -->
+  <link rel="shortcut icon" href="/favicon.ico">
+  <!-- 32x32 -->
+  <link rel="shortcut icon" href="/favicon.png">
+</head>
+
+
+<body>
+  
+  <div class="row">
+    <div class="col s12 m3">
+      <div class="table cover">
+        
+
+<div class="cover-card table-cell table-middle">
+  
+  <img src="/img/avatar.jpg" alt="" class="avatar">
+  
+  <a href="/" class="author_name">ZHENG ZHOU</a>
+  <span class="author_job">Student (Master of Science)</span>
+  <span class="author_bio mbm">I am undating myself...</span>
+  <nav class="nav">
+    <ul class="nav-list">
+         
+      <li class="nav-item">
+        <a href="/archive/">Archive</a>
+        <span>/</span>
+      </li>
+          
+      <li class="nav-item">
+        <a href="/categories/">Categories</a>
+        <span>/</span>
+      </li>
+            
+      <li class="nav-item">
+        <a href="/tags/">Tags</a>
+      </li>
+       
+    </ul>
+  </nav>
+  <div class="social-links">
+  <ul>
+    <li><a href="mailto:encorechow1992@gmail.com" class="social-link-item" target="_blank"><i class="fa fa-fw fa-envelope"></i></a></li>
+    
+    <li><a href="http://facebook.com/axieandyangyang" class="social-link-item" target="_blank"><i class="fa fa-fw fa-facebook"></i></a></li>
+    
+    <li><a href="http://linkedin.com/in/zhou-zheng-378041a5" class="social-link-item" target="_blank"><i class="fa fa-fw fa-linkedin"></i></a></li>
+    
+    
+    
+    <li><a href="http://github.com/encorechow" class="social-link-item" target="_blank"><i class="fa fa-fw fa-github"></i></a></li>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </ul>
+</div>
+
+  <nav class="nav">
+  <ul class="nav-list">
+    <li class="nav-item">
+      <a href="/aboutme/">About Me</a>
+    </li>
+  </ul>
+</nav>
+
+</div>
+
+      </div>
+    </div>
+
+    <div class="col s12 m9">
+      <div class="post-listing">
+        <a class="btn" href= "/" >
+  Home
+</a>
+
+
+<div id="post">
+  <header class="post-header">
+    <h1 title="Longest Substring Without Repeating Characters">Longest Substring Without Repeating Characters</h1>
+    <span class="post-meta">
+      <span class="post-date">
+        21 JAN 2017
+      </span>
+      •
+      <span class="read-time" title="Estimated read time">
+  
+  
+    2 mins read
+  
+</span>
+
+    </span>
+
+  </header>
+
+  <article class="post-content">
+    <h3 id="problem-description">Problem Description</h3>
+<blockquote>
+  <p>Given a string, find the length of the longest substring without repeating characters.</p>
+</blockquote>
+
+<p>*Example:
+Given “abcabcbb”, the answer is “abc”, which the length is 3.</p>
+
+<p>Given “bbbbb”, the answer is “b”, with the length of 1.</p>
+
+<p>Given “pwwkew”, the answer is “wke”, with the length of 3. Note that the answer must be a substring, “pwke” is a subsequence and not a substring.*</p>
+
+<h3 id="sliding-window">Sliding Window</h3>
+
+<p>Key points of algorithm:<br />
+- use unordered_map to store if character has appeared;
+- if character has appeared twice, set the characters before the first occurrence of repeated character to false (not appeared);
+- update maximum length and move the pointer forward.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="kt">int</span> <span class="n">lengthOfLongestSubstring</span><span class="p">(</span><span class="n">string</span> <span class="n">s</span><span class="p">)</span> <span class="p">{</span>
+
+        <span class="c1">// Two Pointers
+</span>        <span class="kt">int</span> <span class="n">p1</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">p2</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+        <span class="kt">int</span> <span class="n">maxLen</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+        <span class="n">unordered_map</span><span class="o">&lt;</span><span class="kt">char</span><span class="p">,</span> <span class="n">bool</span><span class="o">&gt;</span> <span class="n">umap</span><span class="p">;</span>
+
+        <span class="k">while</span> <span class="p">(</span><span class="n">p1</span> <span class="o">&lt;</span> <span class="n">s</span><span class="p">.</span><span class="n">length</span><span class="p">()</span> <span class="o">&amp;&amp;</span> <span class="n">p2</span> <span class="o">&lt;</span> <span class="n">s</span><span class="p">.</span><span class="n">length</span><span class="p">()){</span>
+            <span class="c1">// If s[p1] hasn't appeared before
+</span>            <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">umap</span><span class="p">[</span><span class="n">s</span><span class="p">[</span><span class="n">p1</span><span class="p">]]){</span>
+                <span class="n">umap</span><span class="p">[</span><span class="n">s</span><span class="p">[</span><span class="n">p1</span><span class="p">]]</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+                <span class="n">maxLen</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">maxLen</span><span class="p">,</span> <span class="n">p1</span><span class="o">-</span><span class="n">p2</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>
+                <span class="n">p1</span><span class="o">++</span><span class="p">;</span>
+            <span class="c1">// s[p1] has appeared twice
+</span>            <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+                <span class="c1">// clear the occurrence state of characters that appeared before the first occurrence of repeated character.
+</span>                <span class="n">umap</span><span class="p">[</span><span class="n">s</span><span class="p">[</span><span class="n">p2</span><span class="p">]]</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+                <span class="n">maxLen</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">maxLen</span><span class="p">,</span> <span class="n">p1</span><span class="o">-</span><span class="n">p2</span><span class="p">);</span>
+                <span class="n">p2</span><span class="o">++</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="n">maxLen</span><span class="p">;</span>
+
+    <span class="p">}</span>
+<span class="p">};</span>
+</code></pre>
+</div>
+
+<h3 id="sliding-window-optimized">Sliding Window Optimized</h3>
+
+<p>Optimization: Store the index of character into the map so that we can skip the characters which appeared before the first occurrence of duplicates directly.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="kt">int</span> <span class="n">lengthOfLongestSubstring</span><span class="p">(</span><span class="n">string</span> <span class="n">s</span><span class="p">)</span> <span class="p">{</span>
+
+        <span class="kt">int</span> <span class="n">maxLen</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+        <span class="n">unordered_map</span><span class="o">&lt;</span><span class="kt">char</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;</span> <span class="n">umap</span><span class="p">;</span>
+
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">p1</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">p2</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">p1</span> <span class="o">&lt;</span> <span class="n">s</span><span class="p">.</span><span class="n">length</span><span class="p">();</span> <span class="n">p1</span><span class="o">++</span><span class="p">){</span>
+            
+            <span class="k">if</span> <span class="p">(</span><span class="n">umap</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">p1</span><span class="p">])</span> <span class="o">!=</span> <span class="n">umap</span><span class="p">.</span><span class="n">end</span><span class="p">()){</span>
+                <span class="n">p2</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">umap</span><span class="p">[</span><span class="n">s</span><span class="p">[</span><span class="n">p1</span><span class="p">]],</span> <span class="n">p2</span><span class="p">);</span>
+            <span class="p">}</span>
+            <span class="n">maxLen</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">maxLen</span><span class="p">,</span> <span class="n">p1</span> <span class="o">-</span> <span class="n">p2</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+            <span class="n">umap</span><span class="p">[</span><span class="n">s</span><span class="p">[</span><span class="n">p1</span><span class="p">]]</span> <span class="o">=</span> <span class="n">p1</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="n">maxLen</span><span class="p">;</span>
+
+    <span class="p">}</span>
+<span class="p">};</span>
+</code></pre>
+</div>
+
+  </article>
+</div>
+
+<div class="share-buttons">
+  <h6>Share on: </h6>
+  <ul>
+    <li>
+      <a href="https://twitter.com/intent/tweet?text=/articles/2017-01/Longest-Substring-Without-Repeating-Characters" class="twitter btn" title="Share on Twitter"><i class="fa fa-twitter"></i><span> Twitter</span></a>
+    </li>
+    <li>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=/articles/2017-01/Longest-Substring-Without-Repeating-Characters" class="facebook btn" title="Share on Facebook"><i class="fa fa-facebook"></i><span> Facebook</span></a>
+    </li>
+    <li>
+      <a href="https://plus.google.com/share?url=/articles/2017-01/Longest-Substring-Without-Repeating-Characters" class="google-plus btn" title="Share on Google Plus"><i class="fa fa-google-plus"></i><span> Google+</span></a>
+    </li>
+    <li>
+      <a href="https://news.ycombinator.com/submitlink?u=/articles/2017-01/Longest-Substring-Without-Repeating-Characters" class="hacker-news btn" title="Share on Hacker News"><i class="fa fa-hacker-news"></i><span> Hacker News</span></a>
+    </li>
+    <li>
+      <a href="https://www.reddit.com/submit?url=/articles/2017-01/Longest-Substring-Without-Repeating-Characters" class="reddit btn" title="Share on Reddit"><i class="fa fa-reddit"></i><span> Reddit</span></a>
+    </li>
+  </ul>
+</div><!-- end share-buttons -->
+
+
+
+        <footer>
+  &copy; 2017 ZHENG ZHOU. Powered by <a href="http://jekyllrb.com/">Jekyll</a>
+</footer>
+
+      </div>
+    </div>
+
+  </div>
+  <script type="text/javascript" src="/js/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="/js/main.js"></script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+</script>
+
+
+</body>
+</html>
