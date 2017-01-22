@@ -193,8 +193,16 @@ C= [10,15,20,35,40,50,60,70,100] and fourth smallest element is 35.</em></p>
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">B</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">A</span><span class="p">[</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">B</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">else</span> <span class="n">B</span><span class="p">[</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
 
-    <span class="n">i</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">k</span> <span class="o">//</span> <span class="mi">2</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">))</span>
-    <span class="n">j</span> <span class="o">=</span> <span class="n">k</span> <span class="o">-</span> <span class="n">i</span>
+    <span class="n">k_half</span> <span class="o">=</span> <span class="n">k</span> <span class="o">//</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">k_half</span><span class="p">:</span>
+      <span class="n">i</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+      <span class="n">j</span> <span class="o">=</span> <span class="n">k</span> <span class="o">-</span> <span class="n">i</span>
+    <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">B</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">k_half</span><span class="p">:</span>
+      <span class="n">j</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">B</span><span class="p">)</span>
+      <span class="n">i</span> <span class="o">=</span> <span class="n">k</span> <span class="o">-</span> <span class="n">j</span>
+    <span class="k">else</span><span class="p">:</span>
+      <span class="n">i</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">k</span> <span class="o">//</span> <span class="mi">2</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">))</span>
+      <span class="n">j</span> <span class="o">=</span> <span class="n">k</span> <span class="o">-</span> <span class="n">i</span>
 
     <span class="k">if</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">B</span><span class="p">[</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
         <span class="k">return</span> <span class="n">kth_smallest</span><span class="p">(</span><span class="n">A</span><span class="p">[:</span><span class="n">i</span><span class="p">],</span> <span class="n">B</span><span class="p">[</span><span class="n">j</span><span class="p">:],</span> <span class="n">k</span><span class="o">-</span><span class="n">j</span><span class="p">)</span>
@@ -235,7 +243,7 @@ C= [10,15,20,35,40,50,60,70,100] and fourth smallest element is 35.</em></p>
 
 
         <footer>
-  &copy; 2016 ZHENG ZHOU. Powered by <a href="http://jekyllrb.com/">Jekyll</a>
+  &copy; 2017 ZHENG ZHOU. Powered by <a href="http://jekyllrb.com/">Jekyll</a>
 </footer>
 
       </div>

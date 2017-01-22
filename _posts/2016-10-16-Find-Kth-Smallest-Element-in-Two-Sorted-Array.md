@@ -58,8 +58,16 @@ def kth_smallest(A, B, k):
     if len(A) == 0 or len(B) == 0:
         return A[k-1] if len(B) == 0 else B[k-1]
 
-    i = min(k // 2, len(A))
-    j = k - i
+    k_half = k // 2;
+    if len(A) < k_half:
+      i = len(A)
+      j = k - i
+    elif len(B) < k_half:
+      j = len(B)
+      i = k - j
+    else:
+      i = min(k // 2, len(A))
+      j = k - i
 
     if A[i-1] > B[j-1]:
         return kth_smallest(A[:i], B[j:], k-j)
