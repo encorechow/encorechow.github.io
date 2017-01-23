@@ -1322,10 +1322,10 @@ ul.tag-cloud {
     content: '';
     position: absolute;
     top: 0;
-    left: -2px;
+    left: -1px;
     height: 100%;
-    width: 4px;
-    background: #f8f8f8; }
+    width: 2px;
+    background: #d7dfed; }
   .archive #timeline:after {
     content: "";
     display: table;

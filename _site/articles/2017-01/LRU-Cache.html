@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>LRU Cache</title>
+  <meta name="description" content="Algorithm coding practice. (Online judge passed)">
+
+  <!-- CSS files -->
+  <link rel="stylesheet" href="/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/tomorrow-night-bright.css">
+
+
+  <link rel="canonical" href="/articles/2017-01/LRU-Cache">
+  <link rel="alternate" type="application/rss+xml" title="Neverland" href=" /feed.xml " />
+
+  <!-- Icons -->
+  <!-- 16x16 -->
+  <link rel="shortcut icon" href="/favicon.ico">
+  <!-- 32x32 -->
+  <link rel="shortcut icon" href="/favicon.png">
+</head>
+
+
+<body>
+  
+  <div class="row">
+    <div class="col s12 m3">
+      <div class="table cover">
+        
+
+<div class="cover-card table-cell table-middle">
+  
+  <img src="/img/avatar.jpg" alt="" class="avatar">
+  
+  <a href="/" class="author_name">ZHENG ZHOU</a>
+  <span class="author_job">Student (Master of Science)</span>
+  <span class="author_bio mbm">I am undating myself...</span>
+  <nav class="nav">
+    <ul class="nav-list">
+         
+      <li class="nav-item">
+        <a href="/archive/">Archive</a>
+        <span>/</span>
+      </li>
+          
+      <li class="nav-item">
+        <a href="/categories/">Categories</a>
+        <span>/</span>
+      </li>
+            
+      <li class="nav-item">
+        <a href="/tags/">Tags</a>
+      </li>
+       
+    </ul>
+  </nav>
+  <div class="social-links">
+  <ul>
+    <li><a href="mailto:encorechow1992@gmail.com" class="social-link-item" target="_blank"><i class="fa fa-fw fa-envelope"></i></a></li>
+    
+    <li><a href="http://facebook.com/axieandyangyang" class="social-link-item" target="_blank"><i class="fa fa-fw fa-facebook"></i></a></li>
+    
+    <li><a href="http://linkedin.com/in/zhou-zheng-378041a5" class="social-link-item" target="_blank"><i class="fa fa-fw fa-linkedin"></i></a></li>
+    
+    
+    
+    <li><a href="http://github.com/encorechow" class="social-link-item" target="_blank"><i class="fa fa-fw fa-github"></i></a></li>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </ul>
+</div>
+
+  <nav class="nav">
+  <ul class="nav-list">
+    <li class="nav-item">
+      <a href="/aboutme/">About Me</a>
+    </li>
+  </ul>
+</nav>
+
+</div>
+
+      </div>
+    </div>
+
+    <div class="col s12 m9">
+      <div class="post-listing">
+        <a class="btn" href= "/" >
+  Home
+</a>
+
+
+<div id="post">
+  <header class="post-header">
+    <h1 title="LRU Cache">LRU Cache</h1>
+    <span class="post-meta">
+      <span class="post-date">
+        22 JAN 2017
+      </span>
+      •
+      <span class="read-time" title="Estimated read time">
+  
+  
+    5 mins read
+  
+</span>
+
+    </span>
+
+  </header>
+
+  <article class="post-content">
+    <h3 id="problem-description">Problem Description</h3>
+
+<blockquote>
+  <p>Design and implement a data structure for Least Recently Used (LRU) cache. It should support the following operations: get and put.</p>
+</blockquote>
+
+<ul>
+  <li><strong>get(key)</strong> - Get the value (will always be positive) of the key if the key exists in the cache, otherwise return -1.</li>
+  <li><strong>put(key, value)</strong> - Set or insert the value if the key is not already present. When the cache reached its capacity, it should invalidate the least recently used item before inserting a new item.</li>
+</ul>
+
+<p><em>Example:</em></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">LRUCache</span> <span class="n">cache</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LRUCache</span><span class="p">(</span> <span class="mi">2</span> <span class="cm">/* capacity */</span> <span class="p">);</span>
+
+<span class="n">cache</span><span class="p">.</span><span class="n">put</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+<span class="n">cache</span><span class="p">.</span><span class="n">put</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+<span class="n">cache</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>       <span class="c1">// returns 1
+</span><span class="n">cache</span><span class="p">.</span><span class="n">put</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>    <span class="c1">// evicts key 2
+</span><span class="n">cache</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>       <span class="c1">// returns -1 (not found)
+</span><span class="n">cache</span><span class="p">.</span><span class="n">put</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">);</span>    <span class="c1">// evicts key 1
+</span><span class="n">cache</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>       <span class="c1">// returns -1 (not found)
+</span><span class="n">cache</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>       <span class="c1">// returns 3
+</span><span class="n">cache</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span>       <span class="c1">// returns 4
+</span></code></pre>
+</div>
+
+<h3 id="linked-list-and-hash-table">Linked List and Hash Table</h3>
+
+<p>This is a design problem, which can be solved by using hash table and linked list. The main step as follows:</p>
+
+<ul>
+  <li>put the most recently used to the head of list (get and put that element).</li>
+  <li>hash table to store the key and related linked list.</li>
+  <li>keep knowing where is the end of list, and remove the previous node of the ending node if necessary.</li>
+</ul>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">struct</span> <span class="n">Node</span><span class="p">{</span>
+    <span class="kt">int</span> <span class="n">key</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">value</span><span class="p">;</span>
+    <span class="n">Node</span><span class="o">*</span> <span class="n">prev</span><span class="p">,</span> <span class="o">*</span> <span class="n">next</span><span class="p">;</span>
+    <span class="n">Node</span><span class="p">(</span><span class="kt">int</span> <span class="n">k</span><span class="p">,</span> <span class="kt">int</span> <span class="n">val</span><span class="p">)</span><span class="o">:</span> <span class="n">key</span><span class="p">(</span><span class="n">k</span><span class="p">),</span> <span class="n">value</span><span class="p">(</span><span class="n">val</span><span class="p">),</span> <span class="n">prev</span><span class="p">(</span><span class="nb">NULL</span><span class="p">),</span> <span class="n">next</span><span class="p">(</span><span class="nb">NULL</span><span class="p">){</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+
+
+<span class="k">class</span> <span class="nc">LRUCache</span> <span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="n">LRUCache</span><span class="p">(</span><span class="kt">int</span> <span class="n">capacity</span><span class="p">)</span><span class="o">:</span> <span class="n">_capacity</span><span class="p">(</span><span class="n">capacity</span><span class="p">),</span> <span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">head</span><span class="p">(</span><span class="k">new</span> <span class="n">Node</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)),</span> <span class="n">end</span><span class="p">(</span><span class="k">new</span> <span class="n">Node</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span> <span class="p">{</span>
+        <span class="n">head</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">end</span><span class="p">;</span>
+        <span class="n">end</span><span class="o">-&gt;</span><span class="n">prev</span> <span class="o">=</span> <span class="n">head</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kt">int</span> <span class="n">get</span><span class="p">(</span><span class="kt">int</span> <span class="n">key</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">umap</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">key</span><span class="p">)</span> <span class="o">==</span> <span class="n">umap</span><span class="p">.</span><span class="n">end</span><span class="p">()){</span>
+            <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+        <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+            <span class="n">take_out</span><span class="p">(</span><span class="n">umap</span><span class="p">[</span><span class="n">key</span><span class="p">]);</span>
+            <span class="n">put_to_head</span><span class="p">(</span><span class="n">umap</span><span class="p">[</span><span class="n">key</span><span class="p">]);</span>
+            <span class="k">return</span> <span class="n">umap</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">value</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="kt">void</span> <span class="n">put</span><span class="p">(</span><span class="kt">int</span> <span class="n">key</span><span class="p">,</span> <span class="kt">int</span> <span class="n">value</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">umap</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">key</span><span class="p">)</span> <span class="o">==</span> <span class="n">umap</span><span class="p">.</span><span class="n">end</span><span class="p">()){</span>
+            <span class="n">Node</span><span class="o">*</span> <span class="n">node</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Node</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">);</span>
+            <span class="n">put_to_head</span><span class="p">(</span><span class="n">node</span><span class="p">);</span>
+
+            <span class="c1">// remove the least recently used node if over-capacity.
+</span>            <span class="k">if</span> <span class="p">(</span><span class="n">size</span> <span class="o">&gt;=</span> <span class="n">_capacity</span><span class="p">){</span>
+                <span class="n">Node</span><span class="o">*</span> <span class="n">rmv</span> <span class="o">=</span> <span class="n">end</span><span class="o">-&gt;</span><span class="n">prev</span><span class="p">;</span>
+                <span class="n">rmv</span><span class="o">-&gt;</span><span class="n">prev</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">end</span><span class="p">;</span>
+                <span class="n">end</span><span class="o">-&gt;</span><span class="n">prev</span> <span class="o">=</span> <span class="n">end</span><span class="o">-&gt;</span><span class="n">prev</span><span class="o">-&gt;</span><span class="n">prev</span><span class="p">;</span>
+                <span class="n">umap</span><span class="p">.</span><span class="n">erase</span><span class="p">(</span><span class="n">umap</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">rmv</span><span class="o">-&gt;</span><span class="n">key</span><span class="p">));</span>
+                <span class="k">delete</span> <span class="n">rmv</span><span class="p">;</span>
+                <span class="n">size</span><span class="o">--</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="n">umap</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">node</span><span class="p">;</span>
+            <span class="n">size</span><span class="o">++</span><span class="p">;</span>
+        <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+            <span class="n">umap</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">value</span> <span class="o">=</span> <span class="n">value</span><span class="p">;</span>
+            <span class="n">take_out</span><span class="p">(</span><span class="n">umap</span><span class="p">[</span><span class="n">key</span><span class="p">]);</span>
+            <span class="n">put_to_head</span><span class="p">(</span><span class="n">umap</span><span class="p">[</span><span class="n">key</span><span class="p">]);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="c1">// put any node to the head of linked list.
+</span>    <span class="kt">void</span> <span class="n">put_to_head</span><span class="p">(</span><span class="n">Node</span><span class="o">*</span> <span class="n">node</span><span class="p">){</span>
+        <span class="n">Node</span><span class="o">*</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">head</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+        <span class="n">head</span><span class="o">-&gt;</span><span class="n">next</span><span class="o">-&gt;</span><span class="n">prev</span> <span class="o">=</span> <span class="n">node</span><span class="p">;</span>
+        <span class="n">head</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">node</span><span class="p">;</span>
+        <span class="n">node</span><span class="o">-&gt;</span><span class="n">prev</span> <span class="o">=</span> <span class="n">head</span><span class="p">;</span>
+        <span class="n">node</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">temp</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="c1">// take a node out (unlink its previous and next node)
+</span>    <span class="kt">void</span> <span class="n">take_out</span><span class="p">(</span><span class="n">Node</span><span class="o">*</span> <span class="n">node</span><span class="p">){</span>
+        <span class="n">node</span><span class="o">-&gt;</span><span class="n">next</span><span class="o">-&gt;</span><span class="n">prev</span> <span class="o">=</span> <span class="n">node</span><span class="o">-&gt;</span><span class="n">prev</span><span class="p">;</span>
+        <span class="n">node</span><span class="o">-&gt;</span><span class="n">prev</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">node</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="c1">// print the list
+</span>    <span class="kt">void</span> <span class="n">print_list</span><span class="p">(){</span>
+        <span class="k">for</span> <span class="p">(</span><span class="n">Node</span><span class="o">*</span> <span class="n">i</span> <span class="o">=</span> <span class="n">head</span><span class="p">;</span> <span class="n">i</span> <span class="o">!=</span> <span class="n">end</span><span class="p">;</span> <span class="n">i</span> <span class="o">=</span> <span class="n">i</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">){</span>
+            <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">i</span><span class="o">-&gt;</span><span class="n">value</span> <span class="o">&lt;&lt;</span> <span class="s">"-&gt;"</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="k">private</span><span class="o">:</span>
+    <span class="n">unordered_map</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="n">Node</span><span class="o">*&gt;</span> <span class="n">umap</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">size</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">_capacity</span><span class="p">;</span>
+    <span class="n">Node</span><span class="o">*</span> <span class="n">head</span><span class="p">;</span>
+    <span class="n">Node</span><span class="o">*</span> <span class="n">end</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre>
+</div>
+
+<h3 id="time-complexity">Time Complexity</h3>
+<p>Both operations takes only O(1) time complexity.</p>
+
+  </article>
+</div>
+
+<div class="share-buttons">
+  <h6>Share on: </h6>
+  <ul>
+    <li>
+      <a href="https://twitter.com/intent/tweet?text=/articles/2017-01/LRU-Cache" class="twitter btn" title="Share on Twitter"><i class="fa fa-twitter"></i><span> Twitter</span></a>
+    </li>
+    <li>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=/articles/2017-01/LRU-Cache" class="facebook btn" title="Share on Facebook"><i class="fa fa-facebook"></i><span> Facebook</span></a>
+    </li>
+    <li>
+      <a href="https://plus.google.com/share?url=/articles/2017-01/LRU-Cache" class="google-plus btn" title="Share on Google Plus"><i class="fa fa-google-plus"></i><span> Google+</span></a>
+    </li>
+    <li>
+      <a href="https://news.ycombinator.com/submitlink?u=/articles/2017-01/LRU-Cache" class="hacker-news btn" title="Share on Hacker News"><i class="fa fa-hacker-news"></i><span> Hacker News</span></a>
+    </li>
+    <li>
+      <a href="https://www.reddit.com/submit?url=/articles/2017-01/LRU-Cache" class="reddit btn" title="Share on Reddit"><i class="fa fa-reddit"></i><span> Reddit</span></a>
+    </li>
+  </ul>
+</div><!-- end share-buttons -->
+
+
+
+        <footer>
+  &copy; 2017 ZHENG ZHOU. Powered by <a href="http://jekyllrb.com/">Jekyll</a>
+</footer>
+
+      </div>
+    </div>
+
+  </div>
+  <script type="text/javascript" src="/js/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="/js/main.js"></script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+</script>
+
+
+</body>
+</html>
