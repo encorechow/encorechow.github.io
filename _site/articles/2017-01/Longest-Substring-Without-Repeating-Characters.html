@@ -141,6 +141,7 @@ Given “pwwkew”, the answer is “wke”, with the length of 3. Note that the
 - if character has appeared twice, set the characters before the first occurrence of repeated character to false (not appeared);<br />
 - update maximum length and move the pointer forward.</p>
 
+<h4 id="c">C++</h4>
 <div class="highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
     <span class="kt">int</span> <span class="n">lengthOfLongestSubstring</span><span class="p">(</span><span class="n">string</span> <span class="n">s</span><span class="p">)</span> <span class="p">{</span>
@@ -177,6 +178,7 @@ Given “pwwkew”, the answer is “wke”, with the length of 3. Note that the
 
 <p>Optimization: Store the index of character into the map so that we can skip the characters which appeared before the first occurrence of duplicates directly.</p>
 
+<h4 id="c-1">C++</h4>
 <div class="highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
     <span class="kt">int</span> <span class="n">lengthOfLongestSubstring</span><span class="p">(</span><span class="n">string</span> <span class="n">s</span><span class="p">)</span> <span class="p">{</span>

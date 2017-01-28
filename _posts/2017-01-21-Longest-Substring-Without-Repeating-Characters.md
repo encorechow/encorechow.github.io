@@ -23,6 +23,8 @@ Key points of algorithm:
 - if character has appeared twice, set the characters before the first occurrence of repeated character to false (not appeared);  
 - update maximum length and move the pointer forward.  
 
+
+#### C++
 ```c++
 class Solution {
 public:
@@ -59,6 +61,8 @@ public:
 
 Optimization: Store the index of character into the map so that we can skip the characters which appeared before the first occurrence of duplicates directly.
 
+
+#### C++
 ```c++
 class Solution {
 public:
