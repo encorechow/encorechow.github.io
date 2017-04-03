@@ -91,3 +91,10 @@ $ git add -u
 ```bash  
 $ git update-index --assume-unchanged file
 ```
+
+**Ignore untracked files from working directory**  
+
+```bash  
+$ git clean -n # list files that will be removed from current working directory
+$ git clean -f # actually remove all files
+```
